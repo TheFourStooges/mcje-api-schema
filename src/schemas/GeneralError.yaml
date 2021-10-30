@@ -1,0 +1,10 @@
+# GeneralError:
+type: object
+properties:
+  code:
+    type: integer
+    format: int32
+    maxLength: 3
+    minLength: 3
+  message:
+    type: string

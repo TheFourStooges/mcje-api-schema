@@ -1,0 +1,18 @@
+# ProductAttribute:
+type: object
+properties:
+  id:
+    $ref: './RecordId.yaml'
+  name:
+    type: string
+    example: "Material"
+  description:
+    type: string
+  attribute_options:
+    type: array
+    items:
+      $ref: './ProductAttributeValue.yaml'
+  created:
+    $ref: './UnixTimestamp.yaml'
+  updated:
+    $ref: './UnixTimestamp.yaml'

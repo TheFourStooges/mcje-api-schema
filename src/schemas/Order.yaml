@@ -1,0 +1,54 @@
+# Order:
+type: object
+properties:
+  id:
+    $ref: './RecordId.yaml'
+  cart_id:
+    $ref: './RecordId.yaml'
+  order_reference_id:
+    type: string
+    minLength: 5
+    maxLength: 15
+  created:
+    $ref: './RecordId.yaml'
+  updated:
+    $ref: './RecordId.yaml'
+  status_complete:
+    type: boolean
+    default: false
+  status_payment:
+    type: string
+    enum:
+    - "paid"
+    - "not_yet_paid"
+  status_fulfillment:
+    type: string
+    enum:
+    - "handed_off"
+    - "delivering"
+    - "fulfilled"
+  currency:
+    $ref: './Currency.yaml'
+  order_value:
+    $ref: './Price.yaml'
+  shipping_address:
+    $ref: './ShippingAddress.yaml'
+  billing_address:
+    $ref: './BillingAddress.yaml'
+  order_content:
+    type: object
+    properties:
+      line_items:
+        type: array
+        items:
+          $ref: './LineItem.yaml'
+      subtotal:
+        $ref: './Price.yaml'
+      discounts:
+        type: array
+        items:
+          $ref: './Discount.yaml'
+      shipping:
+        $ref: './Fulfillment.yaml'
+xml:
+  name: Order

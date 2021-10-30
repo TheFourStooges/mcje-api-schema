@@ -1,0 +1,14 @@
+# Price:
+type: object
+required:
+- raw
+properties:
+  raw:
+    type: number
+    format: double
+  formatted:
+    type: string
+  formatted_with_symbol:
+    type: string
+  formatted_with_code:
+    type: string

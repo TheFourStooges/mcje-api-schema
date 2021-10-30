@@ -1,0 +1,16 @@
+# ProductType:
+content:
+  '*/*':
+    schema:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Rings"
+        description:
+          type: string
+        attribute_ids:
+          type: array
+          items:
+            $ref: '../schemas/RecordId.yaml'
+required: true

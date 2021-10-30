@@ -1,0 +1,61 @@
+# Get Product
+get:
+  tags:
+    - product
+  summary: Get a specific product
+  operationId: getProduct
+  parameters:
+    - $ref: '../parameters/identifier.yaml'
+  responses:
+    '200':
+      description: successful get operation
+      content:
+        "*/*":
+          schema:
+            $ref: '../schemas/Product.yaml'
+    '404':
+      description: product with provided id not found
+# Update Product
+put:
+  tags:
+    - product
+  summary: Update a specific product
+  operationId: updateProduct
+  parameters:
+    - $ref: '../parameters/identifier.yaml'
+  requestBody:
+    $ref: '../requestBodies/Product.yaml'
+  responses:
+    '200':
+      description: successful update operation
+      content:
+        "*/*":
+          schema:
+            $ref: '../schemas/Product.yaml'
+    '404':
+      description: product with provided id not found
+  security:
+    - jwt_bearer: []
+# Delete Product
+delete:
+  tags:
+    - product
+  summary: Delete a specific product record
+  operationId: deleteProduct
+  parameters:
+    - $ref: '../parameters/identifier.yaml'
+  responses:
+    '200':
+      description: successful delete operation
+      content:
+        "*/*":
+          schema:
+            type: object
+            properties:
+              id:
+                $ref: '../schemas/RecordId.yaml'
+              deleted:
+                type: boolean
+                default: true
+  security:
+    - jwt_bearer: []

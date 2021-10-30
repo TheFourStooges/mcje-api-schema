@@ -1,0 +1,75 @@
+# Create Product
+post:
+  tags:
+    - product
+  summary: Add a new active product to the store
+  operationId: addProduct
+  responses:
+    '200':
+      description: successful add operation
+      content:
+        "*/*":
+          schema:
+            $ref: '../schemas/Product.yaml'
+    '405':
+      $ref: '../responses/IllegalInput.yaml'
+    '401':
+      $ref: '../responses/UnauthorizedError.yaml'
+  requestBody:
+    $ref: '../requestBodies/Product.yaml'
+  security:
+    - jwt_bearer: []
+# Get multiple Products
+get:
+  tags:
+    - product
+  summary: Get a list of active products
+  operationId: getProducts
+  parameters:
+    - $ref: '../parameters/limit.yaml'
+    - name: category_slug
+      in: query
+      description: filter by array of category slugs. all values must apply to the product
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      style: form
+      explode: false
+    - name: category_id
+      in: query
+      description: filter by array of category ids. all values must apply to the product
+      required: false
+      schema:
+        type: array
+        items:
+          $ref: '../schemas/RecordId.yaml'
+      style: form
+      explode: false
+    - $ref: '../parameters/query.yaml'
+    - name: active
+      in: query
+      description: filter products by their active status. retail users will not see inactive products
+      required: false
+      schema:
+        type: boolean
+  responses:
+    '200':
+      description: successful operation
+      content:
+        "*/*":
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../schemas/Product.yaml'
+              meta:
+                type: object
+                properties:
+                  pagination:
+                    $ref: '../schemas/MetaPagination.yaml'
+    '405':
+      $ref: '../responses/IllegalInput.yaml'

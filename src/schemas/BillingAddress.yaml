@@ -1,0 +1,3 @@
+# BillingAddress:
+allOf:
+- $ref: './Address.yaml'

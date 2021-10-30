@@ -1,0 +1,7 @@
+# Product:
+content:
+  "*/*":
+    schema:
+      $ref: '../schemas/Product.yaml'
+description: Product object that needs to be added to the store
+required: true

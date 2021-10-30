@@ -1,0 +1,59 @@
+# Create Product Attribute
+post:
+  tags:
+    - product
+    - product_type
+  summary: Add a new product attribute (i.e. attribute = user cannot choose)
+  operationId: addProductAttribute
+  responses:
+    '200':
+      description: successful add operation
+      content:
+        "*/*":
+          schema:
+            $ref: '../schemas/ProductAttribute.yaml'
+    '405':
+      $ref: '../responses/IllegalInput.yaml'
+    '401':
+      $ref: '../responses/UnauthorizedError.yaml'
+  requestBody:
+    $ref: '../requestBodies/ProductAttribute.yaml'
+  security:
+    - jwt_bearer: []
+get:
+  tags:
+    - product
+    - product_type
+  summary: Get a list of product attributes
+  operationId: getProductAttributes
+  parameters:
+    - $ref: '../parameters/limit.yaml'
+    - name: type_id
+      in: query
+      description: filter by array of product type ids. all values must apply to the product
+      required: false
+      schema:
+        type: array
+        items:
+          $ref: '../schemas/RecordId.yaml'
+      style: form
+      explode: false
+  responses:
+    '200':
+      description: successful operation
+      content:
+        "*/*":
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../schemas/ProductAttribute.yaml'
+              meta:
+                type: object
+                properties:
+                  pagination:
+                    $ref: '../schemas/MetaPagination.yaml'
+    '405':
+      $ref: '../responses/IllegalInput.yaml'

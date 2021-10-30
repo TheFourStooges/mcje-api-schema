@@ -1,0 +1,9 @@
+# Currency:
+type: object
+required:
+- code
+properties:
+  code:
+    type: string
+  symbol:
+    type: string 

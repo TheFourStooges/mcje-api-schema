@@ -1,0 +1,26 @@
+# Category:
+type: object
+properties:
+  id:
+    $ref: './RecordId.yaml'
+  parent_id:
+    $ref: './RecordId.yaml'
+  slug:
+    type: string
+  name:
+    type: string
+  description:
+    type: string
+  products_count:
+    type: integer
+    format: uint32
+  created:
+    $ref: './UnixTimestamp.yaml'
+  updated:
+    $ref: './UnixTimestamp.yaml'
+  assets:
+    type: array
+    items:
+      $ref: './Asset.yaml'
+xml:
+  name: Category

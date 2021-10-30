@@ -1,0 +1,16 @@
+# ProductAsset:
+content:
+  '*/*':
+    schema:
+      type: object
+      properties:
+        assets:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                $ref: '../schemas/RecordId.yaml'
+              sort_order:
+                type: integer
+                description: Sort order, 1=top

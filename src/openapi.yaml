@@ -1,0 +1,87 @@
+openapi: 3.0.0
+
+###################################
+# MCJE API
+# 2021-10-15
+# Phan Cong Minh (@pcminh)
+###################################
+
+info:
+  description: |
+    This is the OAS document for MCJE Common API
+  version: "1.0.0"
+  title: Common API for Mimililu & Co. Jewelry E-commerce
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    name: Phan Công Minh
+    email: pcminh01@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/thefourstooges/mcje-api/1.0.0
+tags:
+  - name: product
+    description: Products for sale on MCJE
+  - name: product_type
+    description: Product Type/Class
+  - name: category
+    description: Groups of products
+  - name: asset
+    description: Audio/Video/Image asset of a product
+  - name: store
+    description: Access to Petstore orders
+  - name: user
+    description: Operations about user
+    externalDocs:
+      description: Find out more about our store
+      url: 'http://swagger.io'
+paths:
+  ## PRODUCTS & PRODUCT OPTION GROUPS
+  /product:
+    $ref: './paths/products.yaml'
+  /product/{identifier}:
+    $ref: './paths/product.yaml'
+  /product/{identifier}/option_group:
+    $ref: './paths/product__option_groups.yaml'
+  /product/{identifier}/option_group/{group_id}:
+    $ref: './paths/product__option_group.yaml'
+  /product/{identifier}/asset:
+    $ref: './paths/product__assets.yaml'
+  /product/{identifier}/asset/{asset_id}:
+    $ref: './paths/product__asset.yaml'
+  ### PRODUCT TYPES & PRODUCT ATTRIBUTES (i.e. non user choosable)
+  /product/type:
+    $ref: './paths/product_types.yaml'
+  /product/type/{identifier}:
+    $ref: './paths/product_type.yaml'
+  /product/attribute:
+    $ref: './paths/product_attributes.yaml'
+  /product/attribute/{identifier}:
+    $ref: './paths/product_attribute.yaml'
+  ## CATEGORIES
+  /category:
+    $ref: './paths/categories.yaml'
+  /category/{identifier}:
+    $ref: './paths/category.yaml'
+  ## ASSETS
+  /asset:
+    $ref: './paths/assets.yaml'
+  /asset/{identifier}:
+    $ref: './paths/asset.yaml'
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'
+components:
+  schemas:
+    $ref: './schemas/_index.yaml'
+  requestBodies:
+    $ref: './requestBodies/_index.yaml'
+  securitySchemes:
+    $ref: './securitySchemes/_index.yaml'
+  parameters:
+    $ref: './parameters/_index.yaml'
+  responses:
+    $ref: './responses/_index.yaml'

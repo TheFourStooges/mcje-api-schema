@@ -1,0 +1,14 @@
+# ProductAttributeValue:
+type: object
+properties:
+  id:
+    $ref: './RecordId.yaml'
+  attribute_value:
+    type: string
+    example: "Sterling Silver"
+  description:
+    type: string
+  created:
+    $ref: './UnixTimestamp.yaml'
+  updated:
+    $ref: './UnixTimestamp.yaml'

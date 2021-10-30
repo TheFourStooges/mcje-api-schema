@@ -1,0 +1,63 @@
+# Create Category
+post:
+  tags:
+    - category
+  summary: Add a new active category to the store
+  operationId: addCategory
+  responses:
+    '200':
+      description: successful add operation
+      content:
+        "*/*":
+          schema:
+            $ref: '../schemas/Category.yaml'
+    '405':
+      $ref: '../responses/IllegalInput.yaml'
+    '401':
+      $ref: '../responses/UnauthorizedError.yaml'
+  requestBody:
+    $ref: '../requestBodies/Category.yaml'
+  security:
+    - jwt_bearer: []
+# Get multiple Categories
+get:
+  tags:
+    - category
+  summary: Get a list of active categories
+  operationId: getCategories
+  parameters:
+    - name: depth
+      in: query
+      description: The number of children to return, between 0 and 3
+      required: false
+      schema:
+        type: integer
+    - name: parent_id
+      in: query
+      description: Specify a parent category ID to filter by, returning only the children of this category
+      required: false
+      schema:
+        type: array
+        items:
+          $ref: '../schemas/RecordId.yaml'
+      style: form
+      explode: false
+  responses:
+    '200':
+      description: successful operation
+      content:
+        "*/*":
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../schemas/Category.yaml'
+              meta:
+                type: object
+                properties:
+                  pagination:
+                    $ref: '../schemas/MetaPagination.yaml'
+    '405':
+      $ref: '../responses/IllegalInput.yaml'

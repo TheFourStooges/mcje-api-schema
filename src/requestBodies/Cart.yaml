@@ -1,0 +1,10 @@
+# Cart:
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/Cart.yaml'
+  application/xml:
+    schema:
+      $ref: '../schemas/Cart.yaml'
+description: A temporary set of products, chosen and editable at will by the user
+required: true

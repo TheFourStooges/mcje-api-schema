@@ -1,0 +1,52 @@
+MetaPagination:
+  $ref: './MetaPagination.yaml'
+GeneralError:
+  $ref: './GeneralError.yaml'
+RecordId:
+  $ref: './RecordId.yaml'
+Price:
+  $ref: './Price.yaml'
+Currency:
+  $ref: './Currency.yaml'
+UnixTimestamp:
+  $ref: './UnixTimestamp.yaml'
+Asset:
+  $ref: './Asset.yaml'
+Discount:
+  $ref: './Discount.yaml'
+LineItem:
+  $ref: './LineItem.yaml'
+Cart:
+  $ref: './Cart.yaml'
+Order:
+  $ref: './Order.yaml'
+Category:
+  $ref: './Category.yaml'
+# User
+# Tag
+# Pet
+# ApiResonse
+Product:
+  $ref: './Product.yaml'
+ProductType:
+  $ref: './ProductType.yaml'
+ProductAttribute:
+  $ref: './ProductAttribute.yaml'
+ProductAttributeValue:
+  $ref: './ProductAttributeValue.yaml'
+ProductOptionGroup:
+  $ref: './ProductOptionGroup.yaml'
+ProductOption:
+  $ref: './ProductOption.yaml'
+ProductVariant:
+  $ref: './ProductVariant.yaml'
+Address:
+  $ref: './Address.yaml'
+ShippingAddress:
+  $ref: './ShippingAddress.yaml'
+BillingAddress:
+  $ref: './BillingAddress.yaml'
+PaymentInformation:
+  $ref: './PaymentInformation.yaml'
+Fulfillment:
+  $ref: './Fulfillment.yaml'

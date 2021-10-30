@@ -1,0 +1,52 @@
+# Set assets set for a product
+put:
+  tags:
+    - product
+    - asset
+  summary: Set assets for a product
+  description: |
+    Replaces all associates for a product with those provided in the request. You may provide an empty request body in order to delete all asset associations. Note that the assets themselves will not be removed, only the link to the product.
+  operationId: setProductAssets
+  parameters:
+    - $ref: '../parameters/identifier.yaml'
+  requestBody:
+    $ref: '../requestBodies/ProductAsset.yaml'
+  responses:
+    '200':
+      description: successful update operation
+      content:
+        '*/*':
+          schema:
+            type: object
+            properties: 
+              success:
+                type: boolean
+                default: true
+  security:
+    - jwt_bearer: []
+# Add asset to product
+post:
+  tags:
+    - product
+    - asset
+  summary: Add asset to product
+  description: |
+    Associates an asset or list of assets to a product. This request will append to the end of the list by default. You may optionally specify a sort_order value, which will help to control the order that assets are returned in when requesting product data.
+  operationId: addProductAsset
+  parameters:
+    - $ref: '../parameters/identifier.yaml'
+  requestBody:
+    $ref: '../requestBodies/ProductAsset.yaml'
+  responses:
+    '200':
+      description: successful update operation
+      content:
+        '*/*':
+          schema:
+            type: object
+            properties: 
+              success:
+                type: boolean
+                default: true
+  security:
+    - jwt_bearer: []

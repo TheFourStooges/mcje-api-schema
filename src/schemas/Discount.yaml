@@ -1,0 +1,34 @@
+# Discount:
+type: object
+properties:
+  id:
+    $ref: './RecordId.yaml'
+  created:
+    $ref: './UnixTimestamp.yaml'
+  code:
+    type: string
+    minLength: 3
+    maxLength: 10
+  type:
+    type: string
+    enum:
+    - "percentage"
+    - "fixed"
+  value:
+    type: number
+    format: double
+  expires_on:
+    $ref: './UnixTimestamp.yaml'
+  is_expired:
+    type: boolean
+  limit_quantity:
+    type: boolean
+  quantity:
+    type: integer
+    format: uint32
+  description:
+    type: string
+  product_ids:
+    type: array
+    items:
+      $ref: './RecordId.yaml'

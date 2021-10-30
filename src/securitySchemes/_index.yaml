@@ -1,0 +1,6 @@
+mcje_auth:
+  $ref: './mcje_auth.yaml'
+jwt_bearer:
+  $ref: './jwt_bearer.yaml'
+api_key:
+  $ref: './api_key.yaml'

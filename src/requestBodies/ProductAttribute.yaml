@@ -1,0 +1,21 @@
+# ProductAttribute:
+content:
+  '*/*':
+    schema:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Material"
+        description:
+          type: string
+        attribute_options:
+          type: array
+          items:
+            type: object
+            properties:
+              attribute_value:
+                type: string
+                example: "Sterling Silver"
+              description:
+                type: string

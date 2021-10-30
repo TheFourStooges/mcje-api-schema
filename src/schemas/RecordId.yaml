@@ -1,0 +1,3 @@
+# RecordId:
+type: integer
+format: uint64

@@ -1,0 +1,20 @@
+# ProductOption:
+type: object
+required:
+  - name
+properties:
+  id:
+    $ref: './RecordId.yaml'
+  name:
+    type: string
+    example: "Red"
+  price:
+    $ref: './Price.yaml'
+  assets:
+    type: array
+    items:
+      $ref: './Asset.yaml'
+  created:
+    $ref: './UnixTimestamp.yaml'
+  updated:
+    $ref: './UnixTimestamp.yaml'
