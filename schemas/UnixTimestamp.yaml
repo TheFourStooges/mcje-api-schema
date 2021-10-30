@@ -1,0 +1,3 @@
+# UnixTimestamp:
+type: integer
+format: uint64

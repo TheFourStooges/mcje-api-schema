@@ -1,0 +1,29 @@
+# Cart:
+type: object
+properties:
+  id:
+    $ref: './RecordId.yaml'
+  created:
+    $ref: './UnixTimestamp.yaml'
+  last_updated:
+    $ref: './UnixTimestamp.yaml'
+  expires:
+    $ref: './UnixTimestamp.yaml'
+  total_items:
+    type: integer
+    format: uint32
+  total_unique_items:
+    type: integer
+    format: uint32
+  subtotal:
+    $ref: './Price.yaml'
+  currency:
+    $ref: './Currency.yaml'
+  discounts:
+    type: array
+    items:
+      $ref: './Discount.yaml'
+  line_items:
+    type: array
+    items:
+      $ref: './LineItem.yaml'

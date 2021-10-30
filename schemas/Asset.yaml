@@ -1,0 +1,31 @@
+# Asset:
+type: object
+properties:
+  id:
+    $ref: './RecordId.yaml'
+  url:
+    type: string
+  description:
+    type: string
+  is_image:
+    type: boolean
+  filename:
+    type: string
+  file_size:
+    type: integer
+    format: uint64
+  file_extension:
+    type: string
+  image_dimensions:
+    type: object
+    properties:
+      width:
+        type: integer
+        format: uint32
+      height:
+        type: integer
+        format: utin32
+  created:
+    $ref: './UnixTimestamp.yaml'
+  updated:
+    $ref: './UnixTimestamp.yaml'

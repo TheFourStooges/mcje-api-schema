@@ -1,0 +1,17 @@
+# Address:
+type: object
+properties:
+  person_name:
+    type: string
+  street:
+    type: string
+  ward:
+    type: string
+  district:
+    type: string
+  city:
+    type: string
+  postcode:
+    type: string
+  country:
+    type: string

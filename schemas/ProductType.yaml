@@ -1,0 +1,14 @@
+# ProductType:
+type: object
+properties:
+  id:
+    $ref: './RecordId.yaml'
+  name:
+    type: string
+    example: "Rings"
+  description:
+    type: string
+  attributes:
+    type: array
+    items:
+      $ref: './ProductAttribute.yaml'

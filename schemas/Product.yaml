@@ -1,0 +1,38 @@
+# Product:
+type: object
+required:
+- categories
+- name
+- base_price
+- is_active
+properties:
+  id:
+    type: integer
+    format: uint64
+  created:
+    $ref: './UnixTimestamp.yaml'
+  updated:
+    $ref: './UnixTimestamp.yaml'
+  categories:
+    type: array
+    items:
+      $ref: './Category.yaml'
+  name:
+    type: string
+  #sku:
+  #  type: string
+  description:
+    type: string
+  base_price:
+    $ref: './Price.yaml'
+  is_active:
+    type: boolean
+  attributes:
+    type: array
+    items:
+      $ref: './ProductAttribute.yaml'
+  option_groups:
+    type: array
+    items:
+      $ref: './ProductOptionGroup.yaml'
+description: A Schema representing a generic jewelry product
