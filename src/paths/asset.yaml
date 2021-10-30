@@ -1,9 +1,9 @@
-# Get Product
+# Get Asset
 get:
   tags:
-    - product
-  summary: Get a specific product
-  operationId: getProduct
+    - asset
+  summary: Get a specific asset by its ID
+  operationId: getAsset
   parameters:
     - $ref: '../parameters/identifier.yaml'
   responses:
@@ -12,36 +12,36 @@ get:
       content:
         "*/*":
           schema:
-            $ref: '../schemas/Product.yaml'
+            $ref: '../schemas/Asset.yaml'
     '404':
       description: product with provided id not found
-# Update Product
+# Update Asset
 put:
   tags:
-    - product
-  summary: Update a specific product
-  operationId: updateProduct
+    - asset
+  summary: Update the details of an asset
+  operationId: updateAsset
   parameters:
     - $ref: '../parameters/identifier.yaml'
   requestBody:
-    $ref: '../requestBodies/Product.yaml'
+    $ref: '../requestBodies/Asset.yaml'
   responses:
     '200':
       description: successful update operation
       content:
         "*/*":
           schema:
-            $ref: '../schemas/Product.yaml'
+            $ref: '../schemas/Asset.yaml'
     '404':
       description: product with provided id not found
   security:
     - jwt_bearer: []
-# Delete Product
+# Delete Asset
 delete:
   tags:
-    - product
-  summary: Delete a specific product record
-  operationId: deleteProduct
+    - asset
+  summary: Delete a specific asset from the system
+  operationId: deleteAsset
   parameters:
     - $ref: '../parameters/identifier.yaml'
   responses:
@@ -58,4 +58,7 @@ delete:
                 type: boolean
                 default: true
   security:
-    - jwt_bearer: []
+    - mcje_auth:
+      - "create:products"
+      - "update:products"
+      - "delete:products"

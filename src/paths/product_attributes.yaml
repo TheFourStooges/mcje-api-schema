@@ -1,45 +1,36 @@
-# Create Product
+# Create Product Attribute
 post:
   tags:
     - product
-  summary: Add a new active product to the store
-  operationId: addProduct
+    - product_type
+  summary: Add a new product attribute (i.e. attribute = user cannot choose)
+  operationId: addProductAttribute
   responses:
     '200':
       description: successful add operation
       content:
         "*/*":
           schema:
-            $ref: '../schemas/Product.yaml'
+            $ref: '../schemas/ProductAttribute.yaml'
     '405':
       $ref: '../responses/IllegalInput.yaml'
     '401':
       $ref: '../responses/UnauthorizedError.yaml'
   requestBody:
-    $ref: '../requestBodies/Product.yaml'
+    $ref: '../requestBodies/ProductAttribute.yaml'
   security:
     - jwt_bearer: []
-# Get multiple Products
 get:
   tags:
     - product
-  summary: Get a list of active products
-  operationId: getProducts
+    - product_type
+  summary: Get a list of product attributes
+  operationId: getProductAttributes
   parameters:
     - $ref: '../parameters/limit.yaml'
-    - name: category_slug
+    - name: type_id
       in: query
-      description: filter by array of category slugs. all values must apply to the product
-      required: false
-      schema:
-        type: array
-        items:
-          type: string
-      style: form
-      explode: false
-    - name: category_id
-      in: query
-      description: filter by array of category ids. all values must apply to the product
+      description: filter by array of product type ids. all values must apply to the product
       required: false
       schema:
         type: array
@@ -47,13 +38,6 @@ get:
           $ref: '../schemas/RecordId.yaml'
       style: form
       explode: false
-    - $ref: '../parameters/query.yaml'
-    - name: active
-      in: query
-      description: filter products by their active status. retail users will not see inactive products
-      required: false
-      schema:
-        type: boolean
   responses:
     '200':
       description: successful operation
@@ -65,7 +49,7 @@ get:
               data:
                 type: array
                 items:
-                  $ref: '../schemas/Product.yaml'
+                  $ref: '../schemas/ProductAttribute.yaml'
               meta:
                 type: object
                 properties:

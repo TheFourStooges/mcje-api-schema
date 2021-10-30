@@ -1,0 +1,63 @@
+# Create Asset
+post:
+  tags:
+    - asset
+  summary: Create a new asset
+  description: |
+    Creates a new asset. You may provide either a base 64 encoded contents argument with the asset's file content, or a url argument with a remote URL for us to download your asset from. Additional metadata may be provided under the data key. 
+    
+    If both the contents and url arguments are provided, contents will be used. 
+    
+    Possible extensions: JPG, PNG, GIF, ICO, PDF, DOC(X), PPT(X), ODT, XLS(X), MP3, M4A, OGG, WAV, FLAC, MP4, M4V, MOV, WMV, AVI, MPG, OGV, 3GP/3G2, ZIP/RAR
+  operationId: addAsset
+  responses:
+    '200':
+      description: successful add operation
+      content:
+        "*/*":
+          schema:
+            $ref: '../schemas/Asset.yaml'
+    '405':
+      $ref: '../responses/IllegalInput.yaml'
+    '401':
+      $ref: '../responses/UnauthorizedError.yaml'
+  requestBody:
+    $ref: '../requestBodies/Asset.yaml'
+  security:
+    - jwt_bearer: []
+# Get multiple Assets
+get:
+  tags:
+    - asset
+  summary: Get a list of assets
+  operationId: getAssets
+  parameters:
+    - $ref: '../parameters/limit.yaml'
+    - name: page
+      in: query
+      description: The page number to return
+      required: false
+      schema:
+        type: integer
+        format: uint32
+      style: form
+      explode: false
+  responses:
+    '200':
+      description: successful operation
+      content:
+        "*/*":
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../schemas/Asset.yaml'
+              meta:
+                type: object
+                properties:
+                  pagination:
+                    $ref: '../schemas/MetaPagination.yaml'
+    '405':
+      $ref: '../responses/IllegalInput.yaml'

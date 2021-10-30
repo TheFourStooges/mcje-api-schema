@@ -1,0 +1,48 @@
+# Create Product Type
+post:
+  tags:
+    - product
+    - product_type
+  summary: Add a new product type/product class to the store
+  operationId: addProductType
+  responses:
+    '200':
+      description: successful add operation
+      content:
+        "*/*":
+          schema:
+            $ref: '../schemas/ProductType.yaml'
+    '405':
+      $ref: '../responses/IllegalInput.yaml'
+    '401':
+      $ref: '../responses/UnauthorizedError.yaml'
+  requestBody:
+    $ref: '../requestBodies/ProductType.yaml'
+  security:
+    - jwt_bearer: []
+# Get multiple Product Types
+get:
+  tags:
+    - product
+    - product_type
+  summary: Get a list of product types/classes
+  operationId: getProductTypes
+  responses:
+    '200':
+      description: successful operation
+      content:
+        "*/*":
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../schemas/ProductType.yaml'
+              meta:
+                type: object
+                properties:
+                  pagination:
+                    $ref: '../schemas/MetaPagination.yaml'
+    '405':
+      $ref: '../responses/IllegalInput.yaml'

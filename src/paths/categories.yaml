@@ -1,45 +1,40 @@
-# Create Product
+# Create Category
 post:
   tags:
-    - product
-  summary: Add a new active product to the store
-  operationId: addProduct
+    - category
+  summary: Add a new active category to the store
+  operationId: addCategory
   responses:
     '200':
       description: successful add operation
       content:
         "*/*":
           schema:
-            $ref: '../schemas/Product.yaml'
+            $ref: '../schemas/Category.yaml'
     '405':
       $ref: '../responses/IllegalInput.yaml'
     '401':
       $ref: '../responses/UnauthorizedError.yaml'
   requestBody:
-    $ref: '../requestBodies/Product.yaml'
+    $ref: '../requestBodies/Category.yaml'
   security:
     - jwt_bearer: []
-# Get multiple Products
+# Get multiple Categories
 get:
   tags:
-    - product
-  summary: Get a list of active products
-  operationId: getProducts
+    - category
+  summary: Get a list of active categories
+  operationId: getCategories
   parameters:
-    - $ref: '../parameters/limit.yaml'
-    - name: category_slug
+    - name: depth
       in: query
-      description: filter by array of category slugs. all values must apply to the product
+      description: The number of children to return, between 0 and 3
       required: false
       schema:
-        type: array
-        items:
-          type: string
-      style: form
-      explode: false
-    - name: category_id
+        type: integer
+    - name: parent_id
       in: query
-      description: filter by array of category ids. all values must apply to the product
+      description: Specify a parent category ID to filter by, returning only the children of this category
       required: false
       schema:
         type: array
@@ -47,13 +42,6 @@ get:
           $ref: '../schemas/RecordId.yaml'
       style: form
       explode: false
-    - $ref: '../parameters/query.yaml'
-    - name: active
-      in: query
-      description: filter products by their active status. retail users will not see inactive products
-      required: false
-      schema:
-        type: boolean
   responses:
     '200':
       description: successful operation
@@ -65,7 +53,7 @@ get:
               data:
                 type: array
                 items:
-                  $ref: '../schemas/Product.yaml'
+                  $ref: '../schemas/Category.yaml'
               meta:
                 type: object
                 properties:
