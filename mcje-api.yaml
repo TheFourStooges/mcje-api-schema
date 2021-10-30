@@ -25,13 +25,12 @@ servers:
 tags:
   - name: product
     description: Products for sale on MCJE
+  - name: product_type
+    description: Product Type/Class
   - name: category
     description: Groups of products
-  - name: pet
-    description: Everything about your Pets
-    externalDocs:
-      description: Find out more
-      url: 'http://swagger.io'
+  - name: asset
+    description: Audio/Video/Image asset of a product
   - name: store
     description: Access to Petstore orders
   - name: user
@@ -40,6 +39,7 @@ tags:
       description: Find out more about our store
       url: 'http://swagger.io'
 paths:
+  ## PRODUCTS & PRODUCT OPTION GROUPS
   /product:
     # Create Product
     post:
@@ -103,9 +103,17 @@ paths:
           content:
             "*/*":
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Product'
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Product'
+                  meta:
+                    type: object
+                    properties:
+                      pagination:
+                        $ref: '#/components/schemas/MetaPagination'
         '405':
           $ref: '#/components/responses/IllegalInput'
   /product/{identifier}:
@@ -170,6 +178,462 @@ paths:
                     default: true
       security:
         - jwt_bearer: []
+  /product/{identifier}/option_group:
+    # Create option group for product
+    post:
+      tags:
+        - product
+      summary: Create option group for product
+      operationId: addProductOptionGroup
+      parameters:
+        - $ref: '#/components/parameters/identifier'
+      responses:
+        '200':
+          description: successful add operation
+          content:
+            "*/*":
+              schema:
+                $ref: '#/components/schemas/ProductOptionGroup'
+        '405':
+          $ref: '#/components/responses/IllegalInput'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      requestBody:
+        $ref: '#/components/requestBodies/ProductOptionGroup'
+      security:
+        - jwt_bearer: []
+    # List multiple option groups for product
+    get:
+      tags:
+        - product
+      summary: Get a list of option groups for a specific product
+      operationId: getProductOptionGroups
+      responses:
+        '200':
+          description: successful operation
+          content:
+            "*/*":
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ProductOptionGroup'
+                  meta:
+                    type: object
+                    properties:
+                      pagination:
+                        $ref: '#/components/schemas/MetaPagination'
+        '405':
+          $ref: '#/components/responses/IllegalInput'
+  /product/{identifier}/option_group/{group_id}:
+    # Get a specific variant group for product
+    get:
+      tags:
+        - product
+      summary: Get a specific option group of a product
+      operationId: getProductOptionGroup
+      parameters:
+        - $ref: '#/components/parameters/identifier'
+        - name: group_id
+          in: path
+          description: id of the option group
+          required: true
+          schema:
+            $ref: '#/components/schemas/RecordId'
+      responses:
+        '200':
+          description: successful get operation
+          content:
+            "*/*":
+              schema:
+                $ref: '#/components/schemas/ProductOptionGroup'
+        '404':
+          description: product with provided id not found
+    # Update a specific option group of a product
+    put:
+      tags:
+        - product
+      summary: Update a specific option group of a product
+      operationId: updateProductOptionGroup
+      parameters:
+        - $ref: '#/components/parameters/identifier'
+        - name: group_id
+          in: path
+          description: id of the option group
+          required: true
+          schema:
+            $ref: '#/components/schemas/RecordId'
+      requestBody:
+        $ref: '#/components/requestBodies/ProductOptionGroup'
+      responses:
+        '200':
+          description: successful update operation
+          content:
+            "*/*":
+              schema:
+                $ref: '#/components/schemas/ProductOptionGroup'
+        '404':
+          description: product with provided id not found
+      security:
+        - jwt_bearer: []
+    # Delete a specific option group of a product
+    delete:
+      tags:
+        - product
+      summary: Delete a specific product option group of a product
+      operationId: deleteProductOptionGroup
+      parameters:
+        - $ref: '#/components/parameters/identifier'
+        - name: group_id
+          in: path
+          description: id of the option group
+          required: true
+          schema:
+            $ref: '#/components/schemas/RecordId'
+      responses:
+        '200':
+          description: successful delete operation
+          content:
+            "*/*":
+              schema:
+                type: object
+                properties:
+                  id:
+                    $ref: '#/components/schemas/RecordId'
+                  deleted:
+                    type: boolean
+                    default: true
+      security:
+        - jwt_bearer: []
+  /product/{identifier}/asset:
+    # Set assets set for a product
+    put:
+      tags:
+        - product
+        - asset
+      summary: Set assets for a product
+      description: |
+        Replaces all associates for a product with those provided in the request. You may provide an empty request body in order to delete all asset associations. Note that the assets themselves will not be removed, only the link to the product.
+      operationId: setProductAssets
+      parameters:
+        - $ref: '#/components/parameters/identifier'
+      requestBody:
+        $ref: '#/components/requestBodies/ProductAsset'
+      responses:
+        '200':
+          description: successful update operation
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties: 
+                  success:
+                    type: boolean
+                    default: true
+      security:
+        - jwt_bearer: []
+    # Add asset to product
+    post:
+      tags:
+        - product
+        - asset
+      summary: Add asset to product
+      description: |
+        Associates an asset or list of assets to a product. This request will append to the end of the list by default. You may optionally specify a sort_order value, which will help to control the order that assets are returned in when requesting product data.
+      operationId: addProductAsset
+      parameters:
+        - $ref: '#/components/parameters/identifier'
+      requestBody:
+        $ref: '#/components/requestBodies/ProductAsset'
+      responses:
+        '200':
+          description: successful update operation
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties: 
+                  success:
+                    type: boolean
+                    default: true
+      security:
+        - jwt_bearer: []
+  /product/{identifier}/asset/{asset_id}:
+    # Remove asset from product
+    delete:
+      tags:
+        - product
+        - asset
+      summary: Remove asset from product
+      description: |
+        Removes the association of an asset from a product. This will not delete the asset, only the relationship to the product.
+
+        If you need to delete all assets at once, you can use PUT /v1/products/prod_123/assets ("Set assets for a product") with an empty payload.
+      operationId: deleteProductAsset
+      parameters:
+        - $ref: '#/components/parameters/identifier'
+        - name: asset_id
+          in: path
+          description: id of the asset
+          required: true
+          schema:
+            $ref: '#/components/schemas/RecordId'
+      responses:
+        '200':
+          description: successful update operation
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties: 
+                  deleted:
+                    type: boolean
+                    default: true
+      security:
+        - jwt_bearer: []
+  ### PRODUCT TYPES & PRODUCT ATTRIBUTES (i.e. non user choosable)
+  /product/type:
+    # Create Product Type
+    post:
+      tags:
+        - product
+        - product_type
+      summary: Add a new product type/product class to the store
+      operationId: addProductType
+      responses:
+        '200':
+          description: successful add operation
+          content:
+            "*/*":
+              schema:
+                $ref: '#/components/schemas/ProductType'
+        '405':
+          $ref: '#/components/responses/IllegalInput'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      requestBody:
+        $ref: '#/components/requestBodies/ProductType'
+      security:
+        - jwt_bearer: []
+    # Get multiple Product Types
+    get:
+      tags:
+        - product
+        - product_type
+      summary: Get a list of product types/classes
+      operationId: getProductTypes
+      responses:
+        '200':
+          description: successful operation
+          content:
+            "*/*":
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ProductType'
+                  meta:
+                    type: object
+                    properties:
+                      pagination:
+                        $ref: '#/components/schemas/MetaPagination'
+        '405':
+          $ref: '#/components/responses/IllegalInput'
+  /product/type/{identifier}:
+    # Get Product Type
+    get:  
+      tags:
+        - product
+        - product_type
+      summary: Get a specific product type
+      operationId: getProductType
+      parameters:
+        - $ref: '#/components/parameters/identifier'
+      responses:
+        '200':
+          description: successful get operation
+          content:
+            "*/*":
+              schema:
+                $ref: '#/components/schemas/ProductType'
+        '404':
+          description: product with provided id not found
+    # Update Product Type
+    put:
+      tags:
+        - product
+        - product_type
+      summary: Update a specific product type
+      operationId: updateProductType
+      parameters:
+        - $ref: '#/components/parameters/identifier'
+      requestBody:
+        $ref: '#/components/requestBodies/ProductType'
+      responses:
+        '200':
+          description: successful update operation
+          content:
+            "*/*":
+              schema:
+                $ref: '#/components/schemas/ProductType'
+        '404':
+          description: product with provided id not found
+      security:
+        - jwt_bearer: []
+    # Delete Product Type
+    delete:
+      tags:
+        - product
+        - product_type
+      summary: Delete a specific product type
+      operationId: deleteProductType
+      parameters:
+        - $ref: '#/components/parameters/identifier'
+      responses:
+        '200':
+          description: successful delete operation
+          content:
+            "*/*":
+              schema:
+                type: object
+                properties:
+                  id:
+                    $ref: '#/components/schemas/RecordId'
+                  deleted:
+                    type: boolean
+                    default: true
+      security:
+        - jwt_bearer: []
+  /product/attribute:
+    # Create Product Attribute
+    post:
+      tags:
+        - product
+        - product_type
+      summary: Add a new product attribute (i.e. attribute = user cannot choose)
+      operationId: addProductAttribute
+      responses:
+        '200':
+          description: successful add operation
+          content:
+            "*/*":
+              schema:
+                $ref: '#/components/schemas/ProductAttribute'
+        '405':
+          $ref: '#/components/responses/IllegalInput'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      requestBody:
+        $ref: '#/components/requestBodies/ProductAttribute'
+      security:
+        - jwt_bearer: []
+    get:
+      tags:
+        - product
+        - product_type
+      summary: Get a list of product attributes
+      operationId: getProductAttributes
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - name: type_id
+          in: query
+          description: filter by array of product type ids. all values must apply to the product
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/RecordId'
+          style: form
+          explode: false
+      responses:
+        '200':
+          description: successful operation
+          content:
+            "*/*":
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ProductAttribute'
+                  meta:
+                    type: object
+                    properties:
+                      pagination:
+                        $ref: '#/components/schemas/MetaPagination'
+        '405':
+          $ref: '#/components/responses/IllegalInput'
+  /product/attribute/{identifier}:
+    # Get Product Attribute
+    get:  
+      tags:
+        - product
+        - product_type
+      summary: Get a specific product attribute
+      operationId: getProductAttribute
+      parameters:
+        - $ref: '#/components/parameters/identifier'
+      responses:
+        '200':
+          description: successful get operation
+          content:
+            "*/*":
+              schema:
+                $ref: '#/components/schemas/ProductAttribute'
+        '404':
+          description: product with provided id not found
+    # Update Product Attribute
+    put:
+      tags:
+        - product
+        - product_type
+      summary: Update a specific product attribute
+      operationId: updateProductAttribute
+      parameters:
+        - $ref: '#/components/parameters/identifier'
+      requestBody:
+        $ref: '#/components/requestBodies/ProductAttribute'
+      responses:
+        '200':
+          description: successful update operation
+          content:
+            "*/*":
+              schema:
+                $ref: '#/components/schemas/ProductAttribute'
+        '404':
+          description: product with provided id not found
+      security:
+        - jwt_bearer: []
+    # Delete Product Attribute
+    delete:
+      tags:
+        - product
+        - product_type
+      summary: Delete a specific product attribute
+      operationId: deleteProductAttribute
+      parameters:
+        - $ref: '#/components/parameters/identifier'
+      responses:
+        '200':
+          description: successful delete operation
+          content:
+            "*/*":
+              schema:
+                type: object
+                properties:
+                  id:
+                    $ref: '#/components/schemas/RecordId'
+                  deleted:
+                    type: boolean
+                    default: true
+      security:
+        - jwt_bearer: []
+  ## CATEGORIES
   /category:
     # Create Category
     post:
@@ -221,9 +685,17 @@ paths:
           content:
             "*/*":
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Category'
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Category'
+                  meta:
+                    type: object
+                    properties:
+                      pagination:
+                        $ref: '#/components/schemas/MetaPagination'
         '405':
           $ref: '#/components/responses/IllegalInput'
   /category/{identifier}:
@@ -291,242 +763,136 @@ paths:
           - "create:products"
           - "update:products"
           - "delete:products"
-  /pet:
+  ## ASSETS
+  /asset:
+    # Create Asset
     post:
       tags:
-        - pet
-      summary: Add a new pet to the store
-      operationId: addPet
+        - asset
+      summary: Create a new asset
+      description: |
+        Creates a new asset. You may provide either a base 64 encoded contents argument with the asset's file content, or a url argument with a remote URL for us to download your asset from. Additional metadata may be provided under the data key. 
+        
+        If both the contents and url arguments are provided, contents will be used. 
+        
+        Possible extensions: JPG, PNG, GIF, ICO, PDF, DOC(X), PPT(X), ODT, XLS(X), MP3, M4A, OGG, WAV, FLAC, MP4, M4V, MOV, WMV, AVI, MPG, OGV, 3GP/3G2, ZIP/RAR
+      operationId: addAsset
       responses:
+        '200':
+          description: successful add operation
+          content:
+            "*/*":
+              schema:
+                $ref: '#/components/schemas/Asset'
         '405':
-          description: Invalid input
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+          $ref: '#/components/responses/IllegalInput'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
       requestBody:
-        $ref: '#/components/requestBodies/Pet'
-    put:
-      tags:
-        - pet
-      summary: Update an existing pet
-      operationId: updatePet
-      responses:
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Pet not found
-        '405':
-          description: Validation exception
+        $ref: '#/components/requestBodies/Asset'
       security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-      requestBody:
-        $ref: '#/components/requestBodies/Pet'
-  /pet/findByStatus:
+        - jwt_bearer: []
+    # Get multiple Assets
     get:
       tags:
-        - pet
-      summary: Finds Pets by status
-      description: Multiple status values can be provided with comma separated strings
-      operationId: findPetsByStatus
+        - asset
+      summary: Get a list of assets
+      operationId: getAssets
       parameters:
-        - name: status
+        - $ref: '#/components/parameters/limit'
+        - name: page
           in: query
-          description: Status values that need to be considered for filter
-          required: true
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-              enum:
-                - available
-                - pending
-                - sold
-              default: available
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Pet'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Pet'
-        '400':
-          description: Invalid status value
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-  /pet/findByTags:
-    get:
-      tags:
-        - pet
-      summary: Finds Pets by tags
-      description: >-
-        Muliple tags can be provided with comma separated strings. Use\ \ tag1,
-        tag2, tag3 for testing.
-      operationId: findPetsByTags
-      parameters:
-        - name: tags
-          in: query
-          description: Tags to filter by
-          required: true
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Pet'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Pet'
-        '400':
-          description: Invalid tag value
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-      deprecated: true
-  '/pet/{petId}':
-    get:
-      tags:
-        - pet
-      summary: Find pet by ID
-      description: Returns a single pet
-      operationId: getPetById
-      parameters:
-        - name: petId
-          in: path
-          description: ID of pet to return
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Pet'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Pet'
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Pet not found
-      security:
-        - api_key: []
-    post:
-      tags:
-        - pet
-      summary: Updates a pet in the store with form data
-      operationId: updatePetWithForm
-      parameters:
-        - name: petId
-          in: path
-          description: ID of pet that needs to be updated
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '405':
-          description: Invalid input
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-      requestBody:
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                name:
-                  description: Updated name of the pet
-                  type: string
-                status:
-                  description: Updated status of the pet
-                  type: string
-    delete:
-      tags:
-        - pet
-      summary: Deletes a pet
-      operationId: deletePet
-      parameters:
-        - name: api_key
-          in: header
+          description: The page number to return
           required: false
           schema:
-            type: string
-        - name: petId
-          in: path
-          description: Pet id to delete
-          required: true
-          schema:
             type: integer
-            format: int64
-      responses:
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Pet not found
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-  '/pet/{petId}/uploadImage':
-    post:
-      tags:
-        - pet
-      summary: uploads an image
-      operationId: uploadFile
-      parameters:
-        - name: petId
-          in: path
-          description: ID of pet to update
-          required: true
-          schema:
-            type: integer
-            format: int64
+            format: uint32
+          style: form
+          explode: false
       responses:
         '200':
           description: successful operation
           content:
-            application/json:
+            "*/*":
               schema:
-                $ref: '#/components/schemas/ApiResponse'
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Asset'
+                  meta:
+                    type: object
+                    properties:
+                      pagination:
+                        $ref: '#/components/schemas/MetaPagination'
+        '405':
+          $ref: '#/components/responses/IllegalInput'
+  /asset/{identifier}:
+    # Get Asset
+    get:
+      tags:
+        - asset
+      summary: Get a specific asset by its ID
+      operationId: getAsset
+      parameters:
+        - $ref: '#/components/parameters/identifier'
+      responses:
+        '200':
+          description: successful get operation
+          content:
+            "*/*":
+              schema:
+                $ref: '#/components/schemas/Asset'
+        '404':
+          description: product with provided id not found
+    # Update Asset
+    put:
+      tags:
+        - asset
+      summary: Update the details of an asset
+      operationId: updateAsset
+      parameters:
+        - $ref: '#/components/parameters/identifier'
       requestBody:
-        content:
-          application/octet-stream:
-            schema:
-              type: string
-              format: binary
+        $ref: '#/components/requestBodies/Asset'
+      responses:
+        '200':
+          description: successful update operation
+          content:
+            "*/*":
+              schema:
+                $ref: '#/components/schemas/Asset'
+        '404':
+          description: product with provided id not found
+      security:
+        - jwt_bearer: []
+    # Delete Asset
+    delete:
+      tags:
+        - asset
+      summary: Delete a specific asset from the system
+      operationId: deleteAsset
+      parameters:
+        - $ref: '#/components/parameters/identifier'
+      responses:
+        '200':
+          description: successful delete operation
+          content:
+            "*/*":
+              schema:
+                type: object
+                properties:
+                  id:
+                    $ref: '#/components/schemas/RecordId'
+                  deleted:
+                    type: boolean
+                    default: true
+      security:
+        - mcje_auth:
+          - "create:products"
+          - "update:products"
+          - "delete:products"
   /store/inventory:
     get:
       tags:
@@ -791,6 +1157,26 @@ externalDocs:
   url: 'http://swagger.io'
 components:
   schemas:
+    MetaPagination:
+      type: object
+      properties:
+        total:
+          type: integer
+          format: uint64
+        count:  
+          type: integer
+          format: uint64
+        count_per_page:
+          type: integer
+          format: uint64
+        current_page:
+          type: integer
+          format: uint64
+        total_pages:
+          type: integer
+          format: uint64
+        links:
+          type: object
     GeneralError:
       type: object
       properties:
@@ -1156,18 +1542,52 @@ components:
           items:
             $ref: '#/components/schemas/ProductOptionGroup'
       description: A Schema representing a generic jewelry product
+    ProductType:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/RecordId'
+        name:
+          type: string
+          example: "Rings"
+        description:
+          type: string
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductAttribute'
     ProductAttribute:
       type: object
-      required:
-        - key
-        - value
       properties:
-        key:
+        id:
+          $ref: '#/components/schemas/RecordId'
+        name:
           type: string
-          example: "Gemstone"
-        value:
+          example: "Material"
+        description:
           type: string
-          example: "Diamond"
+        attribute_options:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductAttributeValue'
+        created:
+          $ref: '#/components/schemas/UnixTimestamp'
+        updated:
+          $ref: '#/components/schemas/UnixTimestamp'
+    ProductAttributeValue:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/RecordId'
+        attribute_value:
+          type: string
+          example: "Sterling Silver"
+        description:
+          type: string
+        created:
+          $ref: '#/components/schemas/UnixTimestamp'
+        updated:
+          $ref: '#/components/schemas/UnixTimestamp'
     ProductOptionGroup:
       type: object
       required:
@@ -1334,14 +1754,100 @@ components:
             $ref: '#/components/schemas/Product'
       description: Product object that needs to be added to the store
       required: true
+    ProductOptionGroup:
+      content:
+        '*/*':
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                example: "Color"
+              options:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      example: "Red"
+                    price_offset:
+                      type: number
+                      format: double
+                    asset_ids:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/RecordId'
+    ProductType:
+      content:
+        '*/*':
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                example: "Rings"
+              description:
+                type: string
+              attribute_ids:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RecordId'
+      required: true
+    ProductAttribute:
+      content:
+        '*/*':
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                example: "Material"
+              description:
+                type: string
+              attribute_options:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    attribute_value:
+                      type: string
+                      example: "Sterling Silver"
+                    description:
+                      type: string
+    ProductAsset:
+      content:
+        '*/*':
+          schema:
+            type: object
+            properties:
+              assets:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      $ref: '#/components/schemas/RecordId'
+                    sort_order:
+                      type: integer
+                      description: Sort order, 1=top
     Asset:
       content:
-        application/json:
+        '*/*':
           schema:
-            $ref: '#/components/schemas/Asset'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Asset'
+            type: object
+            properties:
+              filename:
+                type: string
+              contents:
+                type: string
+                format: byte
+              url:
+                type: string
+              image_dimensions:
+                $ref: '#/components/schemas/Asset/properties/image_dimensions'
+              private:
+                type: boolean
       description: Asset object, representing media assets (i.e. images, videos, etc.)
       required: true
     Category:
