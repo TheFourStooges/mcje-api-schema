@@ -1,0 +1,7 @@
+# query:
+name: query
+description: filter by a term that will be matched against the id and name
+in: query
+required: false
+schema:
+  type: string

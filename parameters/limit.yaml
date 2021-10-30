@@ -1,0 +1,8 @@
+# limit:
+name: limit
+description: the maximum number of records that will be returned
+in: query
+required: false
+schema:
+  type: integer
+  format: uint32

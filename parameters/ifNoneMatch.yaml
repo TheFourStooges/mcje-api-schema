@@ -1,0 +1,7 @@
+# ifNoneMatch:
+name: if-None-Match
+description: Conditional Create Header, new record is created only if there isn't an existing record at the identifier URL
+in: header
+schema:
+  type: string
+  example: "*"
