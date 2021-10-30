@@ -1,0 +1,10 @@
+# Discount:
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/Discount.yaml'
+  application/xml:
+    schema:
+      $ref: '../schemas/Discount.yaml'
+description: Discount, to be applied to Products
+required: true

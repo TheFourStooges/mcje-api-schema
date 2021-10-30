@@ -1,0 +1,24 @@
+# Category:
+content:
+  '*/*':
+    schema:
+      type: object
+      properties:
+        slug:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '../schemas/RecordId.yaml'
+        childs:
+          type: array
+          items:
+            $ref: '../schemas/RecordId.yaml'
+        parent_id:
+          $ref: '../schemas/RecordId.yaml'
+description: Category is a set of related products
+required: true

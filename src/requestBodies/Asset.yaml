@@ -1,0 +1,26 @@
+# Asset:
+content:
+  '*/*':
+    schema:
+      type: object
+      properties:
+        filename:
+          type: string
+        contents:
+          type: string
+          format: byte
+        url:
+          type: string
+        image_dimensions:
+          type: object
+          properties:
+            width:
+              type: integer
+              format: uint32
+            height:
+              type: integer
+              format: utin32
+        private:
+          type: boolean
+description: Asset object, representing media assets (i.e. images, videos, etc.)
+required: true

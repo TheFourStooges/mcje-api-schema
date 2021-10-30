@@ -1,0 +1,20 @@
+Product:
+  $ref: './Product.yaml'
+ProductOptionGroup:
+  $ref: './ProductOptionGroup.yaml'
+ProductType:
+  $ref: './ProductType.yaml'
+ProductAttribute:
+  $ref: './ProductAttribute.yaml'
+ProductAsset:
+  $ref: './ProductAsset.yaml'
+Asset:
+  $ref: './Asset.yaml'
+Category:
+  $ref: './Category.yaml'
+Cart:
+  $ref: './Cart.yaml'
+Order:
+  $ref: './Order.yaml'
+Discount:
+  $ref: './Discount.yaml'
