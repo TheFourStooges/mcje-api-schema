@@ -1,0 +1,8 @@
+UnauthorizedError:
+  $ref: './UnauthorizedError.yaml'
+NotFound:
+  $ref: './NotFound.yaml'
+IllegalInput:
+  $ref: './IllegalInput.yaml'
+GeneralError:
+  $ref: './GeneralError.yaml'
