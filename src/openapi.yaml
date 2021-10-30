@@ -80,31 +80,7 @@ components:
   requestBodies:
     $ref: './requestBodies/_index.yaml'
   securitySchemes:
-    petstore_auth:
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: 'http://petstore.swagger.io/oauth/dialog'
-          scopes:
-            'write:pets': modify pets in your account
-            'read:pets': read your pets
-    mcje_auth:
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: 'http://petstore.swagger.io/oauth/dialog'
-          scopes:
-            'create:products': create products in system
-            'update:products': update products in system
-            'delete:products': delete products in system
-    jwt_bearer:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-    api_key:
-      type: apiKey
-      name: Authorization
-      in: header
+    $ref: './securitySchemes/_index.yaml'
   parameters:
     $ref: './parameters/_index.yaml'
   responses:
