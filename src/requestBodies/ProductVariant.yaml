@@ -1,0 +1,21 @@
+# ProductVariant:
+content:
+  '*/*':
+    schema:
+      type: object
+      properties:
+        sku:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        option_ids:
+          type: array
+          items:
+            $ref: '../schemas/RecordId.yaml'
+        asset_ids:
+          type: array
+          items:
+            $ref: '../schemas/RecordId.yaml'
+required: true

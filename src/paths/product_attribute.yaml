@@ -1,7 +1,6 @@
 # Get Product Attribute
 get:  
   tags:
-    - product
     - product_type
   summary: Get a specific product attribute
   operationId: getProductAttribute
@@ -19,7 +18,6 @@ get:
 # Update Product Attribute
 put:
   tags:
-    - product
     - product_type
   summary: Update a specific product attribute
   operationId: updateProductAttribute
@@ -41,7 +39,6 @@ put:
 # Delete Product Attribute
 delete:
   tags:
-    - product
     - product_type
   summary: Delete a specific product attribute
   operationId: deleteProductAttribute

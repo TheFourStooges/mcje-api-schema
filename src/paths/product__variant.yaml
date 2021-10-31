@@ -1,0 +1,88 @@
+# /src/paths/product__variant.yaml
+
+# /product/{identifier}/variant/{variant_id}:
+# Get Variant
+get:
+  tags:
+    - product
+  summary: Get a specific variant of a product
+  operationId: getProductVariant
+  parameters:
+    - $ref: '../parameters/identifier.yaml'
+    - name: variant_id
+      in: path
+      description: id of the option group
+      required: true
+      schema:
+        $ref: '../schemas/RecordId.yaml'
+  responses:
+    '200':
+      description: successful get operation
+      content:
+        "*/*":
+          schema:
+            $ref: '../schemas/ProductVariant.yaml'
+    '404':
+      description: product with provided id not found
+# Update Variant
+put:
+  tags:
+    - product
+  summary: Update a specific variant of a product
+  description: |
+    Updates an existing variant. See "Update multiple variants" to update more than one at a time.
+
+    The request arguments for this API are the same as for "create variant".
+
+    Whenever a variant is updated and options are changed, its validity will be recalculated. See "Create variant" for a description of this process, and a list of possible invalid reason codes that may be returned by the API.
+  operationId: updateProductVariant
+  parameters:
+    - $ref: '../parameters/identifier.yaml'
+    - name: variant_id
+      in: path
+      description: id of the option group
+      required: true
+      schema:
+        $ref: '../schemas/RecordId.yaml'
+  requestBody:
+    $ref: '../requestBodies/ProductVariant.yaml'
+  responses:
+    '200':
+      description: successful update operation
+      content:
+        "*/*":
+          schema:
+            $ref: '../schemas/ProductVariant.yaml'
+    '404':
+      description: product with provided id not found
+  security:
+    - jwt_bearer: []
+# Delete Variant
+delete:
+  tags:
+    - product
+  summary: Delete a specific variant of a product
+  operationId: deleteProductVariant
+  parameters:
+    - $ref: '../parameters/identifier.yaml'
+    - name: variant_id
+      in: path
+      description: id of the variant
+      required: true
+      schema:
+        $ref: '../schemas/RecordId.yaml'
+  responses:
+    '200':
+      description: successful delete operation
+      content:
+        "*/*":
+          schema:
+            type: object
+            properties:
+              id:
+                $ref: '../schemas/RecordId.yaml'
+              deleted:
+                type: boolean
+                default: true
+  security:
+    - jwt_bearer: []

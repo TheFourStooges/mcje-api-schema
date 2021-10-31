@@ -1,7 +1,6 @@
 # Create Product Attribute
 post:
   tags:
-    - product
     - product_type
   summary: Add a new product attribute (i.e. attribute = user cannot choose)
   operationId: addProductAttribute
@@ -22,7 +21,6 @@ post:
     - jwt_bearer: []
 get:
   tags:
-    - product
     - product_type
   summary: Get a list of product attributes
   operationId: getProductAttributes

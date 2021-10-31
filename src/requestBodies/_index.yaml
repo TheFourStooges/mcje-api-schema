@@ -1,5 +1,9 @@
 Product:
   $ref: './Product.yaml'
+ProductVariant:
+  $ref: './ProductVariant.yaml'
+ProductVariants:
+  $ref: './ProductVariants.yaml'
 ProductOptionGroup:
   $ref: './ProductOptionGroup.yaml'
 ProductType:

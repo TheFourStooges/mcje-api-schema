@@ -1,7 +1,6 @@
 # Get Product Type
 get:  
   tags:
-    - product
     - product_type
   summary: Get a specific product type
   operationId: getProductType
@@ -19,7 +18,6 @@ get:
 # Update Product Type
 put:
   tags:
-    - product
     - product_type
   summary: Update a specific product type
   operationId: updateProductType
@@ -41,7 +39,6 @@ put:
 # Delete Product Type
 delete:
   tags:
-    - product
     - product_type
   summary: Delete a specific product type
   operationId: deleteProductType

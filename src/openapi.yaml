@@ -48,6 +48,10 @@ paths:
     $ref: './paths/product__option_groups.yaml'
   /product/{identifier}/option_group/{group_id}:
     $ref: './paths/product__option_group.yaml'
+  /product/{identifier}/variant:
+    $ref: './paths/product__variants.yaml'
+  /product/{identifier}/variant/{variant_id}:
+    $ref: './paths/product__variant.yaml'
   /product/{identifier}/asset:
     $ref: './paths/product__assets.yaml'
   /product/{identifier}/asset/{asset_id}:
