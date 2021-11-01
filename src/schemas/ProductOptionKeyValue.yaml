@@ -1,0 +1,9 @@
+# /src/schemas/ProductOptionKeyValue
+
+# ProductOptionKeyValue:
+type: object
+properties:
+  option_group:
+    $ref: './RecordId.yaml'
+  option:
+    $ref: './RecordId.yaml'

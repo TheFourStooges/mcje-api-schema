@@ -1,0 +1,63 @@
+# /src/paths/cart__item.yaml
+
+# /cart/{identifier}/item/{item_id}:
+# Update item in cart
+put:
+  tags:
+    - cart
+  summary: Update line item in cart
+  operationId: updateCartItem
+  paramters:
+    - $ref: '../parameters/identifier.yaml'
+    - name: item_id
+      in: path
+      description: id of the asset
+      required: true
+      schema:
+        $ref: '../schemas/RecordId.yaml'
+  requestBody:
+    $ref: '../requestBodies/LineItem.yaml'
+  responses:
+    '200':
+      description: successful update
+      content:
+        "*/*":
+          schema:
+            $ref: '../schemas/Cart.yaml'
+    '404':
+      description: cart with provided id not found
+    '405':
+      $ref: '../responses/IllegalInput.yaml'
+    '401':
+      $ref: '../responses/UnauthorizedError.yaml'
+  security:
+    - jwt_bearer: []
+# Remove line item from cart
+delete:
+  tags:
+    - cart
+  summary: Remove line item from cart
+  operationId: removeCartItem
+  parameters:
+    - $ref: '../parameters/identifier.yaml'
+    - name: item_id
+      in: path
+      description: id of the asset
+      required: true
+      schema:
+        $ref: '../schemas/RecordId.yaml'
+  responses:
+    '200':
+      description: successful update
+      content:
+        "*/*":
+          schema:
+            $ref: '../schemas/Cart.yaml'
+    '404':
+      description: cart with provided id not found
+    '405':
+      $ref: '../responses/IllegalInput.yaml'
+    '401':
+      $ref: '../responses/UnauthorizedError.yaml'
+  security:
+   - jwt_bearer: []

@@ -38,6 +38,10 @@ ProductOptionGroup:
   $ref: './ProductOptionGroup.yaml'
 ProductOption:
   $ref: './ProductOption.yaml'
+ProductOptionKeyValue:
+  $ref: './ProductOptionKeyValue.yaml'
+ProductOptionsDictionary:
+  $ref: './ProductOptionsDictionary.yaml'
 ProductVariant:
   $ref: './ProductVariant.yaml'
 Address:

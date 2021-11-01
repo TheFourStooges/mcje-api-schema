@@ -19,14 +19,18 @@ properties:
   updated:
     $ref: './UnixTimestamp.yaml'
   options:
-    type: array
-    items:
-      type: object
-      properties:
-        variant_group:
-          $ref: './RecordId.yaml'
-        variant_option:
-          $ref: './RecordId.yaml'
+    $ref: './ProductOptionsDictionary.yaml'
+    # type: array
+    # items:
+    #   $ref: './ProductOptionKeyValue.yaml'
+    # type: array
+    # items:
+    #   type: object
+    #   properties:
+    #     variant_group:
+    #       $ref: './RecordId.yaml'
+    #     variant_option:
+    #       $ref: './RecordId.yaml'
   assets:
     type: array
     items:

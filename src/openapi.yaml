@@ -31,6 +31,8 @@ tags:
     description: Groups of products
   - name: asset
     description: Audio/Video/Image asset of a product
+  - name: cart
+    description: User's cart
   - name: store
     description: Access to Petstore orders
   - name: user
@@ -75,6 +77,15 @@ paths:
     $ref: './paths/assets.yaml'
   /asset/{identifier}:
     $ref: './paths/asset.yaml'
+  ## CART
+  /cart:
+    $ref: './paths/carts.yaml'
+  /cart/{identifier}:
+    $ref: './paths/cart.yaml'
+  /cart/{identifier}/item:
+    $ref: './paths/cart__items.yaml'
+  /cart/{identifier}/item/{item_id}:
+    $ref: './paths/cart__item.yaml'
 externalDocs:
   description: Find out more about Swagger
   url: 'http://swagger.io'

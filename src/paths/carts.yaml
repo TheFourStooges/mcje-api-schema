@@ -1,0 +1,16 @@
+# /src/paths/carts.yaml
+
+# /cart:
+get:
+  tags:
+    - cart
+  summary: Create a cart
+  operationId: createCart
+  responses:
+    '201':
+      description: Cart created
+      content:
+        "*/*":
+          schema:
+            $ref: '../schemas/Cart.yaml'
+  
