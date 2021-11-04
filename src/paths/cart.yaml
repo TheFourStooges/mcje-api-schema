@@ -28,10 +28,10 @@ put:
     - cart
   summary: Update cart
   operationId: updateCart
-  paramters:
+  parameters:
     - $ref: '../parameters/identifier.yaml'
   requestBody:
-    - $ref: '../requestBodies/Cart.yaml'
+    $ref: '../requestBodies/Cart.yaml'
   responses:
     '200':
       description: successful update

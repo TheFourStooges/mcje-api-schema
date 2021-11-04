@@ -7,7 +7,7 @@ put:
     - cart
   summary: Update line item in cart
   operationId: updateCartItem
-  paramters:
+  parameters:
     - $ref: '../parameters/identifier.yaml'
     - name: item_id
       in: path

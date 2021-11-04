@@ -6,9 +6,13 @@ properties:
   raw:
     type: number
     format: double
+    example: 690000.00
   formatted:
     type: string
+    example: "690,000.00"
   formatted_with_symbol:
     type: string
+    example: "$690,000.00"
   formatted_with_code:
     type: string
+    example: "USD 690,000.00"
