@@ -22,6 +22,7 @@ servers:
   # Added by API Auto Mocking Plugin
   - description: SwaggerHub API Auto Mocking
     url: https://virtserver.swaggerhub.com/thefourstooges/mcje-api/1.0.0
+  - url: http://localhost:3000/v1
 tags:
   - name: product
     description: Products for sale on MCJE
