@@ -1,0 +1,42 @@
+post:
+  tags:
+    - store
+  summary: Add a new payment entry to payment history for this order
+  operationId: addOrderPayment
+  parameters:
+    - $ref: '../parameters/identifier.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            transactionId:
+              type: string
+            type:
+              type: string
+              enum:
+              - "card"
+              - "bank-transfer"
+              - "cash-on-delivery"
+              - "refund"
+            amount:
+              type: number
+            currency:
+              type: string
+              minLength: 3
+              maxLength: 3
+              default: 'VND'
+  responses:
+    '200':
+      description: successful add operation
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/OrderPayment.yaml'
+    '405':
+      $ref: '../responses/IllegalInput.yaml'
+    '401':
+      $ref: '../responses/UnauthorizedError.yaml'
+  security:
+    - bearerAuth: []

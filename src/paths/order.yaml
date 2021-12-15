@@ -1,0 +1,62 @@
+# Retrieve Order
+get:
+  tags:
+    - store
+  summary: Get a specific order
+  operationId: getOrder
+  parameters:
+    - $ref: '../parameters/identifier.yaml'
+  responses:
+    '200':
+      description: successful get operation
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Order.yaml'
+    '404':
+      description: order with order id not found
+  security:
+    - bearerAuth: []
+
+# Update Order
+patch:
+  tags:
+    - store
+  summary: Update a specific order
+  operationId: updateOrder
+  parameters:
+    - $ref: '../parameters/identifier.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            customer:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Nguyen Van A
+                email:
+                  type: string
+                  format: email
+                ipAddress:
+                  type: string
+                country:
+                  type: string
+                region:
+                  type: string
+            shippingAddress:
+              $ref: '../schemas/ShippingAddress.yaml'
+  responses:
+    '200':
+      description: successful update operation
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Order.yaml'
+    '404':
+      description: Order with provided id not found
+  security:
+    - bearerAuth: []

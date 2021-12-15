@@ -1,0 +1,31 @@
+# Get multiple Products
+get:
+  tags:
+    - store
+  summary: Get a list of orders
+  operationId: getOrders
+  parameters:
+    - $ref: '../parameters/limit.yaml'
+    - $ref: '../parameters/page.yaml'
+    - $ref: '../parameters/sortBy.yaml'
+  responses:
+    '200':
+      description: successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../schemas/Order.yaml'
+              meta:
+                type: object
+                properties:
+                  pagination:
+                    $ref: '../schemas/MetaPagination.yaml'
+    '405':
+      $ref: '../responses/IllegalInput.yaml'
+  security:
+    - bearerAuth: []

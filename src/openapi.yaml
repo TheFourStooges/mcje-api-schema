@@ -35,7 +35,7 @@ tags:
   - name: cart
     description: User's cart
   - name: store
-    description: Access to Petstore orders
+    description: Access to store's orders
   - name: Users
     description: User management and retrieval
   - name: Auth
@@ -115,6 +115,15 @@ paths:
     $ref: './paths/checkout.yaml'
   /checkout/{identifier}: 
     $ref: './paths/checkout-token.yaml'
+  ## ORDER MANAGEMENT
+  /order:
+    $ref: './paths/orders.yaml'
+  /order/{identifier}: 
+    $ref: './paths/order.yaml'
+  /order/{identifier}/add-payment:
+    $ref: './paths/order__add-payment.yaml'
+  /order/{identifier}/add-fulfillment:
+    $ref: './paths/order__add-fulfillment.yaml'
 externalDocs:
   description: Find out more about Swagger
   url: 'http://swagger.io'
