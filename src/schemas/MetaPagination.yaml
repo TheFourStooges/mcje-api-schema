@@ -1,19 +1,19 @@
 # MetaPagination:
 type: object
 properties:
-  total:
+  page:
     type: integer
     format: uint64
-  count:  
+  limit:  
     type: integer
     format: uint64
-  count_per_page:
+  totalPages:
     type: integer
     format: uint64
-  current_page:
+  totalResults:
     type: integer
     format: uint64
-  total_pages:
+  resultsThisPage:
     type: integer
     format: uint64
   links:
