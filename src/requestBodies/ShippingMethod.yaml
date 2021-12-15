@@ -1,0 +1,12 @@
+# ShippingMethod
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        description:
+          type: string
+        provider:
+          type: string
+        price:
+          type: number

@@ -1,0 +1,11 @@
+# ShippingMethod
+type: object
+properties:
+  id:
+    $ref: './RecordId.yaml'
+  description:
+    type: string
+  provider:
+    type: string
+  price:
+    $ref: './Price.yaml'

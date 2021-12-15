@@ -1,0 +1,50 @@
+# Create ShippingMethod
+post:
+  tags:
+    - ShippingMethod
+  summary: Add a new shipping method to the store
+  operationId: createShippingMethod
+  responses:
+    '200':
+      description: successful add operation
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/ShippingMethod.yaml'
+    '405':
+      $ref: '../responses/IllegalInput.yaml'
+    '401':
+      $ref: '../responses/UnauthorizedError.yaml'
+  requestBody:
+    $ref: '../requestBodies/ShippingMethod.yaml'
+  security:
+    - bearerAuth: []
+# Get multiple ShippingMethods
+get:
+  tags:
+    - ShippingMethod
+  summary: Get a list of shipping methods
+  operationId: getShippingMethods
+  parameters:
+    - $ref: '../parameters/limit.yaml'
+    - $ref: '../parameters/page.yaml'
+    - $ref: '../parameters/sortBy.yaml'
+  responses:
+    '200':
+      description: successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../schemas/ShippingMethod.yaml'
+              meta:
+                type: object
+                properties:
+                  pagination:
+                    $ref: '../schemas/MetaPagination.yaml'
+    '405':
+      $ref: '../responses/IllegalInput.yaml'

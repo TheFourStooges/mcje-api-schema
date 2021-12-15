@@ -1,48 +1,50 @@
-MetaPagination:
-  $ref: './MetaPagination.yaml'
-GeneralError:
-  $ref: './GeneralError.yaml'
-RecordId:
-  $ref: './RecordId.yaml'
-Price:
-  $ref: './Price.yaml'
-Currency:
-  $ref: './Currency.yaml'
-UnixTimestamp:
-  $ref: './UnixTimestamp.yaml'
+Address:
+  $ref: './Address.yaml'
 Asset:
   $ref: './Asset.yaml'
-Discount:
-  $ref: './Discount.yaml'
-CartItem:
-  $ref: './CartItem.yaml'
+AuthTokens:
+  $ref: './AuthTokens.yaml'
+BillingAddress:
+  $ref: './BillingAddress.yaml'
 Cart:
   $ref: './Cart.yaml'
+CartItem:
+  $ref: './CartItem.yaml'
+Category:
+  $ref: './Category.yaml'
+CheckoutToken:
+  $ref: './CheckoutToken.yaml'
+Currency:
+  $ref: './Currency.yaml'
+Discount:
+  $ref: './Discount.yaml'
+GeneralError:
+  $ref: './GeneralError.yaml'
+IdUnion:
+  $ref: './IdUnion.yaml'
+MetaPagination:
+  $ref: './MetaPagination.yaml'
 Order:
   $ref: './Order.yaml'
 OrderFulfillment: 
   $ref: './OrderFulfillment.yaml'
-OrderPayment: 
-  $ref: './OrderPayment.yaml'
 OrderItem:
   $ref: './OrderItem.yaml'
-Category:
-  $ref: './Category.yaml'
-# User
-# Tag
-# Pet
-# ApiResonse
+OrderPayment: 
+  $ref: './OrderPayment.yaml'
+Price:
+  $ref: './Price.yaml'
 Product:
   $ref: './Product.yaml'
-Address:
-  $ref: './Address.yaml'
+RecordId:
+  $ref: './RecordId.yaml'
 ShippingAddress:
   $ref: './ShippingAddress.yaml'
-BillingAddress:
-  $ref: './BillingAddress.yaml'
-AuthTokens:
-  $ref: './AuthTokens.yaml'
+ShippingMethod:
+  $ref: './ShippingMethod.yaml'
 Token: 
   $ref: './Token.yaml'
+UnixTimestamp:
+  $ref: './UnixTimestamp.yaml'
 User: 
   $ref: './User.yaml'

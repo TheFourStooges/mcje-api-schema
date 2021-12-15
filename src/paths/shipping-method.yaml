@@ -1,0 +1,61 @@
+# Get ShippingMethod
+get:
+  tags:
+    - ShippingMethod
+  summary: Get a specific shipping method
+  operationId: getShippingMethod
+  parameters:
+    - $ref: '../parameters/identifier.yaml'
+  responses:
+    '200':
+      description: successful get operation
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/ShippingMethod.yaml'
+    '404':
+      description: ShippingMethod with provided id not found
+# Update ShippingMethod
+patch:
+  tags:
+    - ShippingMethod
+  summary: Update a specific shipping method
+  operationId: updateShippingMethod
+  parameters:
+    - $ref: '../parameters/identifier.yaml'
+  requestBody:
+    $ref: '../requestBodies/ShippingMethod.yaml'
+  responses:
+    '200':
+      description: successful update operation
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/ShippingMethod.yaml'
+    '404':
+      description: ShippingMethod with provided id not found
+  security:
+    - bearerAuth: []
+# Delete ShippingMethod
+delete:
+  tags:
+    - ShippingMethod
+  summary: Delete a specific ShippingMethod record
+  operationId: deleteShippingMethod
+  parameters:
+    - $ref: '../parameters/identifier.yaml'
+  responses:
+    '200':
+      description: successful delete operation
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                $ref: '../schemas/RecordId.yaml'
+              deleted:
+                type: boolean
+                default: true
+  security:
+    - bearerAuth: []
