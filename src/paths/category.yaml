@@ -16,7 +16,7 @@ get:
     '404':
       description: product with provided id not found
 # Update Category
-put:
+patch:
   tags:
     - category
   summary: Update a specific category

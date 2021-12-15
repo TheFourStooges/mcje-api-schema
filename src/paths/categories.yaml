@@ -3,7 +3,7 @@ post:
   tags:
     - category
   summary: Add a new active category to the store
-  operationId: addCategory
+  operationId: createCategory
   responses:
     '200':
       description: successful add operation

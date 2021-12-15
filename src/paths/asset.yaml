@@ -16,7 +16,7 @@ get:
     '404':
       description: product with provided id not found
 # Update Asset
-put:
+patch:
   tags:
     - asset
   summary: Update the details of an asset
