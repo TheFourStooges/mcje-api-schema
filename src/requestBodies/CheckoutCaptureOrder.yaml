@@ -1,0 +1,71 @@
+# CheckoutCaptureOrder
+required: true
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        customer:
+          type: object
+          properties:
+            name:
+              type: string
+              maxLength: 100
+            email:
+              type: string
+              format: email 
+        shippingAddress:
+          type: object
+          properties:
+            name:
+              type: string
+              maxLength: 100
+            phone:
+              type: string
+              maxLength: 13
+            streetLine1:
+              type: string
+              maxLength: 100
+            ward:
+              type: string
+              maxLength: 100
+            district:
+              type: string
+              maxLength: 100
+            city:
+              type: string
+              maxLength: 100
+            postalCode:
+              type: string
+              maxLength: 6
+            country:
+              type: string
+              maxLength: 100
+        paymentInformation:
+          type: object
+          properties:
+            paymentMethod:
+              type: string
+              enum:
+              - "card" 
+              - "bank-transfer"
+              - "cash-on-delivery"
+            cardNumber:
+              type: string
+            cardCvv:
+              type: string
+              minLength: 3
+              maxLength: 3
+            cardHolder:
+              type: string
+            cardExpiration:
+              type: object
+              properties:
+                month:
+                  type: string
+                  minLength: 2
+                  maxLength: 2
+                year:
+                  type: string
+                  minLength: 2
+                  maxLength: 2

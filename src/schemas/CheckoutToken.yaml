@@ -1,0 +1,29 @@
+# CheckoutToken
+type: object
+properties:
+  id:
+    $ref: './RecordId.yaml'
+  expiresAt:
+    $ref: './UnixTimestamp.yaml'
+  status: 
+    type: string
+    enum: 
+    - "created"
+    - "captured"
+  totalItems:
+    type: integer
+    format: uint32
+  totalUniqueItems:
+    type: integer
+    format: uint32
+  subtotal:
+    $ref: './Price.yaml'
+  shipping:
+    $ref: './Price.yaml'
+  tax:
+    $ref: './Price.yaml'
+  total: 
+    $ref: './Price.yaml'
+  totalWithTax:
+    $ref: './Price.yaml'
+  

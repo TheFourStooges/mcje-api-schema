@@ -1,0 +1,88 @@
+# /checkout
+get:
+  tags:
+    - Checkout
+  summary: Retrieve a specific checkout token
+  operationId: getCheckoutToken
+  parameters:
+    - $ref: '../parameters/identifier.yaml'
+  responses:
+    '200':
+      description: successful get operation
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/CheckoutToken.yaml'
+    '404':
+      description: checkoutToken with provided id not found
+    '405':
+      $ref: '../responses/IllegalInput.yaml'
+    '401':
+      $ref: '../responses/UnauthorizedError.yaml'
+  security:
+    - bearerAuth: []
+
+patch:
+  tags:
+    - Checkout
+  summary: "Update checkout token attributes. For now: shippingMethodId"
+  operationId: updateCheckoutToken
+  parameters:
+    - $ref: '../parameters/identifier.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            shippingMethodId:
+              $ref: '../schemas/IdUnion.yaml'
+  responses:
+    '200':
+      description: successful update operation
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/CheckoutToken.yaml'
+    '404':
+      description: product with provided id not found
+  security:
+    - bearerAuth: []
+
+post:
+  tags:
+    - Checkout
+  summary: "Capture Cart/CheckoutToken, convert to Order"
+  operationId: captureOrder
+  parameters:
+    - $ref: '../parameters/identifier.yaml'
+  requestBody:
+    $ref: '../requestBodies/CheckoutCaptureOrder.yaml'
+  responses:
+    '200':
+      description: successful order capture operation
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Order.yaml'
+    '404':
+      description: Checkout Token not found
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/GeneralError.yaml'
+          example:
+            code: 404
+            message: Checkout Token Not found
+    '400':
+      description: Checkout Token not suitable for Conversion. Already converted/Item count <= 0/Checkout Token must have shippingMethodId
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/GeneralError.yaml'
+          example:
+            code: 400
+            message: Checkout Token not suitable for Conversion. Already converted/Item count <= 0/Checkout Token must have shippingMethodId
+  security:
+    - bearerAuth: []

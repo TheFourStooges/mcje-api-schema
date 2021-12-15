@@ -40,6 +40,8 @@ tags:
     description: User management and retrieval
   - name: Auth
     description: Authentication
+  - name: Checkout
+    description: Checkout and Order Conversion
 paths:
   ## USER.ROUTE.JS
   /users:
@@ -76,10 +78,10 @@ paths:
   #   $ref: './paths/product__variants.yaml'
   # /product/{identifier}/variant/{variant_id}:
   #   $ref: './paths/product__variant.yaml'
-  /product/{identifier}/asset:
-    $ref: './paths/product__assets.yaml'
-  /product/{identifier}/asset/{asset_id}:
-    $ref: './paths/product__asset.yaml'
+  # /product/{identifier}/asset:
+  #   $ref: './paths/product__assets.yaml'
+  # /product/{identifier}/asset/{asset_id}:
+  #   $ref: './paths/product__asset.yaml'
   # ### PRODUCT TYPES & PRODUCT ATTRIBUTES (i.e. non user choosable)
   # /product/type:
   #   $ref: './paths/product_types.yaml'
@@ -108,6 +110,11 @@ paths:
     $ref: './paths/cart__items.yaml'
   /cart/{identifier}/items/{item_id}:
     $ref: './paths/cart__item.yaml'
+  ## CHECKOUT
+  /checkout:
+    $ref: './paths/checkout.yaml'
+  /checkout/{identifier}: 
+    $ref: './paths/checkout-token.yaml'
 externalDocs:
   description: Find out more about Swagger
   url: 'http://swagger.io'

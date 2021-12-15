@@ -1,0 +1,33 @@
+# /checkout
+get:
+  tags:
+    - Checkout
+  summary: Create checkout token associated with a cart, ready for capture
+  operationId: generateCheckoutToken
+  parameters:
+    - name: cartId
+      in: query
+      description: cartId to associate with new token
+      required: true
+      schema:
+        $ref: '../schemas/RecordId.yaml'
+      style: form
+      explode: false
+  # requestBody:
+  #   required: true
+  #   content:
+  #     application/json:
+  #       schema: 
+  #         type: object
+  #         properties:
+  #           cartId:
+  #             $ref: '../schemas/RecordId.yaml'
+  responses:
+    '201':
+      description: CheckoutToken created
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/CheckoutToken.yaml'
+  security:
+    - bearerAuth: []
