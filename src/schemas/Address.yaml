@@ -1,9 +1,9 @@
 # Address:
 type: object
 properties:
-  person_name:
+  name:
     type: string
-  street:
+  streetLine1:
     type: string
   ward:
     type: string
@@ -11,7 +11,7 @@ properties:
     type: string
   city:
     type: string
-  postcode:
+  postalCode:
     type: string
   country:
     type: string

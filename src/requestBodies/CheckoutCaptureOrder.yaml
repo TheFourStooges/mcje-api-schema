@@ -11,36 +11,47 @@ content:
             name:
               type: string
               maxLength: 100
+              example: "John Smith"
             email:
               type: string
               format: email 
+              example: "jsmith@example.com"
         shippingAddress:
           type: object
           properties:
             name:
               type: string
               maxLength: 100
+              example: "Ron Receipient"
             phone:
               type: string
+              minLength: 10
               maxLength: 13
+              example: "0123456789"
             streetLine1:
               type: string
               maxLength: 100
+              example: "1, duong Hung Vuong"
             ward:
               type: string
               maxLength: 100
+              example: "Dien Ban"
             district:
               type: string
               maxLength: 100
+              example: "Ba Dinh"
             city:
               type: string
               maxLength: 100
+              example: "Hanoi"
             postalCode:
               type: string
               maxLength: 6
+              example: "11021"
             country:
               type: string
               maxLength: 100
+              example: "VN"
         paymentInformation:
           type: object
           properties:
@@ -52,12 +63,15 @@ content:
               - "cash-on-delivery"
             cardNumber:
               type: string
+              example: "4111111111111111"
             cardCvv:
               type: string
               minLength: 3
               maxLength: 3
+              example: "123"
             cardHolder:
               type: string
+              example: "BIGGUS DICCUS"
             cardExpiration:
               type: object
               properties:
@@ -65,7 +79,9 @@ content:
                   type: string
                   minLength: 2
                   maxLength: 2
+                  example: "10"
                 year:
                   type: string
                   minLength: 2
                   maxLength: 2
+                  example: "22"

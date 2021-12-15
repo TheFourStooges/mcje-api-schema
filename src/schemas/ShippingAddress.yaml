@@ -3,7 +3,7 @@ allOf:
 - $ref: './Address.yaml'
 - type: object
   properties:
-    receipient_phone:
+    phone:
       type: string
       minLength: 10
       maxLength: 13
