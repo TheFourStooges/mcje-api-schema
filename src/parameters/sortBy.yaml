@@ -1,0 +1,7 @@
+# sortBy
+name: sortBy
+in: query
+required: false
+schema:
+  type: string
+  example: "createdAt:asc,id:desc"

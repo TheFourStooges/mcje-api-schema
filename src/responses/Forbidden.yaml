@@ -1,9 +1,9 @@
-# NotFound:
-description: Not found
+# Forbidden:
+description: Forbidden
 content:
   application/json:
     schema:
       $ref: '../schemas/GeneralError.yaml'
     example:
-      code: 404
-      message: Not found
+      code: 403
+      message: Forbidden

@@ -6,14 +6,14 @@ delete:
   tags:
     - cart
   summary: Empty cart
-  operationId: removeAllCartItems
+  operationId: emptyCart
   parameters:
     - $ref: '../parameters/identifier.yaml'
   responses:
     '200':
       description: successful update
       content:
-        "*/*":
+        application/json:
           schema:
             $ref: '../schemas/Cart.yaml'
     '404':
@@ -23,4 +23,4 @@ delete:
     '401':
       $ref: '../responses/UnauthorizedError.yaml'
   security:
-   - jwt_bearer: []
+   - bearerAuth: []

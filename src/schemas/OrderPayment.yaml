@@ -1,0 +1,23 @@
+# OrderPayment
+type: object
+properties:
+  id:
+    $ref: './RecordId.yaml'
+  orderId:
+    $ref: './RecordId.yaml'
+  transactionId:
+    type: string
+  type:
+    type: string
+    enum:
+    - "card"
+    - "bank-transfer"
+    - "cash-on-delivery"
+    - "refund"
+  amount:
+    type: number
+  currency:
+    type: string
+    minLength: 3
+    maxLength: 3
+  

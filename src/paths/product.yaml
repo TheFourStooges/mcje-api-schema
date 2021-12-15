@@ -10,7 +10,7 @@ get:
     '200':
       description: successful get operation
       content:
-        "*/*":
+        application/json:
           schema:
             $ref: '../schemas/Product.yaml'
     '404':
@@ -29,13 +29,13 @@ put:
     '200':
       description: successful update operation
       content:
-        "*/*":
+        application/json:
           schema:
             $ref: '../schemas/Product.yaml'
     '404':
       description: product with provided id not found
   security:
-    - jwt_bearer: []
+    - bearerAuth: []
 # Delete Product
 delete:
   tags:
@@ -48,7 +48,7 @@ delete:
     '200':
       description: successful delete operation
       content:
-        "*/*":
+        application/json:
           schema:
             type: object
             properties:
@@ -58,4 +58,4 @@ delete:
                 type: boolean
                 default: true
   security:
-    - jwt_bearer: []
+    - bearerAuth: []

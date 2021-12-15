@@ -1,15 +1,15 @@
 Product:
   $ref: './Product.yaml'
-ProductVariant:
-  $ref: './ProductVariant.yaml'
-ProductVariants:
-  $ref: './ProductVariants.yaml'
-ProductOptionGroup:
-  $ref: './ProductOptionGroup.yaml'
-ProductType:
-  $ref: './ProductType.yaml'
-ProductAttribute:
-  $ref: './ProductAttribute.yaml'
+# ProductVariant:
+#   $ref: './ProductVariant.yaml'
+# ProductVariants:
+#   $ref: './ProductVariants.yaml'
+# ProductOptionGroup:
+#   $ref: './ProductOptionGroup.yaml'
+# ProductType:
+#   $ref: './ProductType.yaml'
+# ProductAttribute:
+#   $ref: './ProductAttribute.yaml'
 ProductAsset:
   $ref: './ProductAsset.yaml'
 Asset:
@@ -18,7 +18,5 @@ Category:
   $ref: './Category.yaml'
 Cart:
   $ref: './Cart.yaml'
-Order:
-  $ref: './Order.yaml'
-Discount:
-  $ref: './Discount.yaml'
+CheckoutToken: 
+  $ref: './CheckoutToken.yaml'

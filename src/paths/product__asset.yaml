@@ -21,7 +21,7 @@ delete:
     '200':
       description: successful update operation
       content:
-        '*/*':
+        application/json':
           schema:
             type: object
             properties: 
@@ -29,4 +29,4 @@ delete:
                 type: boolean
                 default: true
   security:
-    - jwt_bearer: []
+    - bearerAuth: []

@@ -1,0 +1,9 @@
+name: page
+in: query
+description: The page number to return
+required: false
+schema:
+  type: integer
+  format: uint32
+style: form
+explode: false

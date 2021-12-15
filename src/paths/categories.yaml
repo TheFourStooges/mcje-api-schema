@@ -8,7 +8,7 @@ post:
     '200':
       description: successful add operation
       content:
-        "*/*":
+        application/json:
           schema:
             $ref: '../schemas/Category.yaml'
     '405':
@@ -18,7 +18,7 @@ post:
   requestBody:
     $ref: '../requestBodies/Category.yaml'
   security:
-    - jwt_bearer: []
+    - bearerAuth: []
 # Get multiple Categories
 get:
   tags:
@@ -32,7 +32,7 @@ get:
       required: false
       schema:
         type: integer
-    - name: parent_id
+    - name: parentId
       in: query
       description: Specify a parent category ID to filter by, returning only the children of this category
       required: false
@@ -46,7 +46,7 @@ get:
     '200':
       description: successful operation
       content:
-        "*/*":
+        application/json:
           schema:
             type: object
             properties:

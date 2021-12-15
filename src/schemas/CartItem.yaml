@@ -1,0 +1,31 @@
+# LineItem:
+type: object
+properties:
+  id:
+    $ref: './RecordId.yaml'
+  cartId:
+    $ref: './RecordId.yaml'
+  productId:
+    $ref: './RecordId.yaml'
+  sku:
+    type: string
+  price:
+    $ref: './Price.yaml'
+  discountPerItem:
+    $ref: './Price.yaml'
+  quantity:
+    type: integer
+    format: uint32
+    minimum: 1
+    maximum: 10
+  lineTotal:
+    $ref: './Price.yaml'
+  isActive:
+    type: boolean
+    default: true
+  createdAt:
+    $ref: './UnixTimestamp.yaml'
+  updatedAt: 
+    $ref: './UnixTimestamp.yaml'
+  deletedAt:
+    $ref: './UnixTimestamp.yaml'

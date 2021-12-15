@@ -1,3 +1,4 @@
 # RecordId:
 type: string
-example: type_7RyWOwmG95nEa2
+format: uuid
+example: ffffffff-ffff-ffff-ffff-ffffffffffff

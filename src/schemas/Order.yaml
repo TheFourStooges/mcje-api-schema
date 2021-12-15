@@ -3,52 +3,91 @@ type: object
 properties:
   id:
     $ref: './RecordId.yaml'
-  cart_id:
+  cartId:
     $ref: './RecordId.yaml'
-  order_reference_id:
+  checkoutTokenId:
+    $ref: './RecordId.yaml'
+  referenceNumber:
     type: string
     minLength: 5
     maxLength: 15
-  created:
+  createdAt:
     $ref: './RecordId.yaml'
-  updated:
+  updatedAt:
     $ref: './RecordId.yaml'
-  status_complete:
-    type: boolean
-    default: false
-  status_payment:
-    type: string
-    enum:
-    - "paid"
-    - "not_yet_paid"
-  status_fulfillment:
-    type: string
-    enum:
-    - "handed_off"
-    - "delivering"
-    - "fulfilled"
-  currency:
-    $ref: './Currency.yaml'
-  order_value:
-    $ref: './Price.yaml'
-  shipping_address:
-    $ref: './ShippingAddress.yaml'
-  billing_address:
-    $ref: './BillingAddress.yaml'
-  order_content:
+  deletedAt:
+    $ref: './RecordId.yaml'
+  customer:
     type: object
     properties:
-      line_items:
-        type: array
-        items:
-          $ref: './LineItem.yaml'
-      subtotal:
-        $ref: './Price.yaml'
-      discounts:
-        type: array
-        items:
-          $ref: './Discount.yaml'
-      shipping:
-        $ref: './Fulfillment.yaml'
+      name:
+        type: string
+        example: Nguyen Van A
+      email:
+        type: string
+        format: email
+      ipAddress:
+        type: string
+      country:
+        type: string
+      region:
+        type: string
+  shippingAddress:
+    $ref: './ShippingAddress.yaml'
+  status:
+    type: string
+    enum:
+    - "created"
+    - "fulfilled"
+    - "confirmed-satisfied"
+    - "refunded"
+  paymentStatus:
+    type: string
+    enum:
+    - "not-paid"
+    - "paid-not-in-full"
+    - "paid-in-full"
+    - "refunded"
+  fulfillmentStatus:
+    type: string
+    enum:
+    - "await-confirmation"
+    - "confirmed-and-prep"
+    - "shipping"
+    - "fulfilled"
+  totalItems:
+    type: integer
+    format: uint32
+  totalUniqueItems:
+    type: integer
+    format: uint32
+  subtotal:
+    $ref: './Price.yaml'
+  shipping:
+    $ref: './Price.yaml'
+  tax:
+    $ref: './Price.yaml'
+  total: 
+    $ref: './Price.yaml'
+  totalWithTax:
+    $ref: './Price.yaml'
+  paymentMethod:
+    type: string
+    enum:
+    - "card" 
+    - "bank-transfer" 
+    - "cash-on-delivery"
+  orderItems:
+    type: array
+    items:
+      $ref: './OrderItem.yaml'
+  orderPayments:
+    type: array
+    items:
+      $ref: './OrderPayment.yaml'
+  orderFulfillments:
+    type: array
+    items:
+      $ref: './OrderFulfillment.yaml'
 xml:
   name: Order

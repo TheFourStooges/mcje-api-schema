@@ -20,14 +20,14 @@ info:
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 servers:
   # Added by API Auto Mocking Plugin
-  - description: SwaggerHub API Auto Mocking
-    url: https://virtserver.swaggerhub.com/thefourstooges/mcje-api/1.0.0
+  # - description: SwaggerHub API Auto Mocking
+  #   url: https://virtserver.swaggerhub.com/thefourstooges/mcje-api/1.0.0
   - url: http://localhost:3000/v1
 tags:
   - name: product
     description: Products for sale on MCJE
-  - name: product_type
-    description: Product Type/Class
+  # - name: product_type
+  #   description: Product Type/Class
   - name: category
     description: Groups of products
   - name: asset
@@ -36,38 +36,59 @@ tags:
     description: User's cart
   - name: store
     description: Access to Petstore orders
-  - name: user
-    description: Operations about user
-    externalDocs:
-      description: Find out more about our store
-      url: 'http://swagger.io'
+  - name: Users
+    description: User management and retrieval
+  - name: Auth
+    description: Authentication
 paths:
+  ## USER.ROUTE.JS
+  /users:
+    $ref: './paths/users.yaml'
+  /users/{id}: 
+    $ref: './paths/user.yaml'
+  ## AUTH.ROUTE.JS
+  /auth/register:
+    $ref: './paths/auth__register.yaml'
+  /auth/login:
+    $ref: './paths/auth__login.yaml'
+  /auth/logout:
+    $ref: './paths/auth__logout.yaml'
+  /auth/refresh-tokens:
+    $ref: './paths/auth__refresh-tokens.yaml'
+  /auth/forgot-password:
+    $ref: './paths/auth__forgot-password.yaml'
+  /auth/reset-password:
+    $ref: './paths/auth__reset-password.yaml'
+  /auth/send-verification-email:
+    $ref: './paths/auth__send-verification-email.yaml'
+  /auth/verify-email:
+    $ref: './paths/auth__verify-email.yaml'
   ## PRODUCTS & PRODUCT OPTION GROUPS
   /product:
     $ref: './paths/products.yaml'
   /product/{identifier}:
     $ref: './paths/product.yaml'
-  /product/{identifier}/option_group:
-    $ref: './paths/product__option_groups.yaml'
-  /product/{identifier}/option_group/{group_id}:
-    $ref: './paths/product__option_group.yaml'
-  /product/{identifier}/variant:
-    $ref: './paths/product__variants.yaml'
-  /product/{identifier}/variant/{variant_id}:
-    $ref: './paths/product__variant.yaml'
+  # /product/{identifier}/option_group:
+  #   $ref: './paths/product__option_groups.yaml'
+  # /product/{identifier}/option_group/{group_id}:
+  #   $ref: './paths/product__option_group.yaml'
+  # /product/{identifier}/variant:
+  #   $ref: './paths/product__variants.yaml'
+  # /product/{identifier}/variant/{variant_id}:
+  #   $ref: './paths/product__variant.yaml'
   /product/{identifier}/asset:
     $ref: './paths/product__assets.yaml'
   /product/{identifier}/asset/{asset_id}:
     $ref: './paths/product__asset.yaml'
-  ### PRODUCT TYPES & PRODUCT ATTRIBUTES (i.e. non user choosable)
-  /product/type:
-    $ref: './paths/product_types.yaml'
-  /product/type/{identifier}:
-    $ref: './paths/product_type.yaml'
-  /product/attribute:
-    $ref: './paths/product_attributes.yaml'
-  /product/attribute/{identifier}:
-    $ref: './paths/product_attribute.yaml'
+  # ### PRODUCT TYPES & PRODUCT ATTRIBUTES (i.e. non user choosable)
+  # /product/type:
+  #   $ref: './paths/product_types.yaml'
+  # /product/type/{identifier}:
+  #   $ref: './paths/product_type.yaml'
+  # /product/attribute:
+  #   $ref: './paths/product_attributes.yaml'
+  # /product/attribute/{identifier}:
+  #   $ref: './paths/product_attribute.yaml'
   ## CATEGORIES
   /category:
     $ref: './paths/categories.yaml'
@@ -83,9 +104,9 @@ paths:
     $ref: './paths/carts.yaml'
   /cart/{identifier}:
     $ref: './paths/cart.yaml'
-  /cart/{identifier}/item:
+  /cart/{identifier}/items:
     $ref: './paths/cart__items.yaml'
-  /cart/{identifier}/item/{item_id}:
+  /cart/{identifier}/items/{item_id}:
     $ref: './paths/cart__item.yaml'
 externalDocs:
   description: Find out more about Swagger

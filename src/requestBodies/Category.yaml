@@ -1,6 +1,6 @@
 # Category:
 content:
-  '*/*':
+  application/json':
     schema:
       type: object
       properties:
@@ -10,15 +10,13 @@ content:
           type: string
         description:
           type: string
-        assets:
-          type: array
-          items:
-            $ref: '../schemas/RecordId.yaml'
-        childs:
-          type: array
-          items:
-            $ref: '../schemas/RecordId.yaml'
-        parent_id:
-          $ref: '../schemas/RecordId.yaml'
+        isActive:
+          type: boolean
+        # assets:
+        #   type: array
+        #   items:
+        #     $ref: '../schemas/RecordId.yaml'
+        parentId:
+          $ref: '../schemas/IdUnion.yaml'
 description: Category is a set of related products
 required: true

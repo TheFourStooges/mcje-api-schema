@@ -1,9 +1,0 @@
-# mcje_auth:
-type: oauth2
-flows:
-  implicit:
-    authorizationUrl: 'http://petstore.swagger.io/oauth/dialog'
-    scopes:
-      'create:products': create products in system
-      'update:products': update products in system
-      'delete:products': delete products in system

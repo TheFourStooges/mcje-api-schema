@@ -1,8 +1,0 @@
-# ProductOptionsDictionary:
-type: object
-additionalProperties:
-  $ref: './RecordId.yaml'
-  # $ref: './ProductOptionKeyValue.yaml'
-example:
-  vgrp_Kvg9l6Apq51bB7: optn_ZG6kVw7vOl2eDx
-  vgrp_kpnNwAyBrwmXB3: optn_7RyWOwmG95nEa2

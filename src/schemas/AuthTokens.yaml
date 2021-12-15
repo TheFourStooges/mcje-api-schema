@@ -1,0 +1,7 @@
+# AuthTokens:
+type: object
+properties:
+  access:
+    $ref: './Token.yaml'
+  refresh:
+    $ref: './Token.yaml'

@@ -1,0 +1,9 @@
+# DuplicateEmail:
+description: Email already taken
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/GeneralError.yaml'
+    example:
+      code: 400
+      message: Email already taken

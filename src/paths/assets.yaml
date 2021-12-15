@@ -4,17 +4,13 @@ post:
     - asset
   summary: Create a new asset
   description: |
-    Creates a new asset. You may provide either a base 64 encoded contents argument with the asset's file content, or a url argument with a remote URL for us to download your asset from. Additional metadata may be provided under the data key. 
-    
-    If both the contents and url arguments are provided, contents will be used. 
-    
-    Possible extensions: JPG, PNG, GIF, ICO, PDF, DOC(X), PPT(X), ODT, XLS(X), MP3, M4A, OGG, WAV, FLAC, MP4, M4V, MOV, WMV, AVI, MPG, OGV, 3GP/3G2, ZIP/RAR
-  operationId: addAsset
+    Creates a new asset. Upload in multipart/form-data format
+  operationId: createAsset
   responses:
     '200':
       description: successful add operation
       content:
-        "*/*":
+        application/json:
           schema:
             $ref: '../schemas/Asset.yaml'
     '405':
@@ -24,7 +20,7 @@ post:
   requestBody:
     $ref: '../requestBodies/Asset.yaml'
   security:
-    - jwt_bearer: []
+    - bearerAuth: []
 # Get multiple Assets
 get:
   tags:
@@ -33,20 +29,18 @@ get:
   operationId: getAssets
   parameters:
     - $ref: '../parameters/limit.yaml'
-    - name: page
+    - $ref: '../parameters/page.yaml'
+    - name: productId
       in: query
-      description: The page number to return
-      required: false
       schema:
-        type: integer
-        format: uint32
-      style: form
-      explode: false
+        $ref: '../schemas/RecordId.yaml'
+      required: false
+      description: To find all images of the Product with id
   responses:
     '200':
       description: successful operation
       content:
-        "*/*":
+        application/json:
           schema:
             type: object
             properties:

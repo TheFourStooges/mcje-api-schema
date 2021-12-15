@@ -1,6 +1,6 @@
 # ProductAsset:
 content:
-  '*/*':
+  application/json':
     schema:
       type: object
       properties:

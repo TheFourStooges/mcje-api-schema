@@ -3,27 +3,31 @@ type: object
 properties:
   id:
     $ref: './RecordId.yaml'
-  created:
+  userId:
+    $ref: './RecordId.yaml'
+  checkoutTokenId: 
+    $ref: './RecordId.yaml'
+  createdAt:
     $ref: './UnixTimestamp.yaml'
-  last_updated:
+  updatedAt:
     $ref: './UnixTimestamp.yaml'
-  expires:
+  expiresAt:
     $ref: './UnixTimestamp.yaml'
-  total_items:
+  totalItems:
     type: integer
     format: uint32
-  total_unique_items:
+  totalUniqueItems:
     type: integer
     format: uint32
   subtotal:
     $ref: './Price.yaml'
-  currency:
-    $ref: './Currency.yaml'
-  discounts:
+  cartCaptured:
+    type: boolean
+    default: false 
+  status:
+    type: string
+    enum: ['active', 'checkout', 'captured']
+  cartItems:
     type: array
     items:
-      $ref: './Discount.yaml'
-  line_items:
-    type: array
-    items:
-      $ref: './LineItem.yaml'
+      $ref: './CartItem.yaml'

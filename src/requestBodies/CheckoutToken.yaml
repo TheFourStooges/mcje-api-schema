@@ -1,0 +1,10 @@
+# CheckoutToken
+content:
+  application/json':
+    schema:
+      type: object
+      properties:
+        cartId:
+          $ref: '../schemas/RecordId.yaml'
+description: CheckoutToken request
+required: true

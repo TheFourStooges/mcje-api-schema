@@ -1,30 +1,28 @@
-# Asset:
+# OrderItem:
 type: object
 properties:
   id:
     $ref: './RecordId.yaml'
+  orderId:
+    $ref: './RecordId.yaml'
   productId:
     $ref: './RecordId.yaml'
-  url:
+  sku:
     type: string
-  path: 
-    type: string
-  description:
-    type: string
-  filename:
-    type: string
-  fileSize:
-    type: integer
-    format: uint64
-  imageWidth:
+  price:
+    $ref: './Price.yaml'
+  discountPerItem:
+    $ref: './Price.yaml'
+  quantity:
     type: integer
     format: uint32
-  imageHeight:
-    type: integer
-    format: utin32
+    minimum: 1
+    maximum: 10
+  lineTotal:
+    $ref: './Price.yaml'
   createdAt:
     $ref: './UnixTimestamp.yaml'
-  updatedAt:
+  updatedAt: 
     $ref: './UnixTimestamp.yaml'
   deletedAt:
     $ref: './UnixTimestamp.yaml'

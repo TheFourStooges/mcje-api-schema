@@ -1,6 +1,9 @@
 # UnauthorizedError:
-description: Authorization Token is missing or invalid
-headers:
-  WWW_Authenticate:
+description: Unauthorized
+content:
+  application/json:
     schema:
-      type: string
+      $ref: '../schemas/GeneralError.yaml'
+    example:
+      code: 401
+      message: Please authenticate

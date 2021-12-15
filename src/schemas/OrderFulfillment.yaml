@@ -1,0 +1,22 @@
+# OrderFulfillment
+type: object
+properties:
+  id:
+    $ref: './RecordId.yaml'
+  orderId:
+    $ref: './RecordId.yaml'
+  description:
+    type: string
+    example: Package handed off to carrier
+  carrier:
+    type: string
+    example: "Giao hàng phí phạm"
+  trackingNumber:
+    type: string
+    example: "LP01234567890VN"
+  type:
+    type: string
+    enum:
+    - "hand-off-to-carrier"
+    - "in-transit"
+    - "delivered"

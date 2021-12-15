@@ -15,7 +15,7 @@ put:
     '200':
       description: successful update operation
       content:
-        '*/*':
+        application/json':
           schema:
             type: object
             properties: 
@@ -23,7 +23,7 @@ put:
                 type: boolean
                 default: true
   security:
-    - jwt_bearer: []
+    - bearerAuth: []
 # Add asset to product
 post:
   tags:
@@ -41,7 +41,7 @@ post:
     '200':
       description: successful update operation
       content:
-        '*/*':
+        application/json':
           schema:
             type: object
             properties: 
@@ -49,4 +49,4 @@ post:
                 type: boolean
                 default: true
   security:
-    - jwt_bearer: []
+    - bearerAuth: []

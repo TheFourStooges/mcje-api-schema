@@ -8,7 +8,7 @@ post:
     '200':
       description: successful add operation
       content:
-        "*/*":
+        application/json:
           schema:
             $ref: '../schemas/Product.yaml'
     '405':
@@ -18,7 +18,7 @@ post:
   requestBody:
     $ref: '../requestBodies/Product.yaml'
   security:
-    - jwt_bearer: []
+    - bearerAuth: []
 # Get multiple Products
 get:
   tags:
@@ -27,17 +27,9 @@ get:
   operationId: getProducts
   parameters:
     - $ref: '../parameters/limit.yaml'
-    - name: category_slug
-      in: query
-      description: filter by array of category slugs. all values must apply to the product
-      required: false
-      schema:
-        type: array
-        items:
-          type: string
-      style: form
-      explode: false
-    - name: category_id
+    - $ref: '../parameters/page.yaml'
+    - $ref: '../parameters/sortBy.yaml'
+    - name: categoryId
       in: query
       description: filter by array of category ids. all values must apply to the product
       required: false
@@ -47,18 +39,11 @@ get:
           $ref: '../schemas/RecordId.yaml'
       style: form
       explode: false
-    - $ref: '../parameters/query.yaml'
-    - name: active
-      in: query
-      description: filter products by their active status. retail users will not see inactive products
-      required: false
-      schema:
-        type: boolean
   responses:
     '200':
       description: successful operation
       content:
-        "*/*":
+        application/json:
           schema:
             type: object
             properties:

@@ -8,30 +8,101 @@ required:
 properties:
   id:
     $ref: './RecordId.yaml'
-  created:
-    $ref: './UnixTimestamp.yaml'
-  updated:
-    $ref: './UnixTimestamp.yaml'
-  categories:
-    type: array
-    items:
-      $ref: './Category.yaml'
   name:
     type: string
-  #sku:
-  #  type: string
+    example: Sterling Silver Bracelet
+  slug:
+    type: string
+    example: sterling-silver-bracelet-1234
   description:
     type: string
-  base_price:
+  basePrice:
     $ref: './Price.yaml'
-  is_active:
+  quantity:
+    type: integer
+    format: uint32
+  isActive:
     type: boolean
-  attributes:
+  categoryId:
+    $ref: './RecordId.yaml'
+  category:
+    $ref: './Category.yaml'
+  properties:
+    type: object
+    properties:
+      product: 
+        type: object
+        properties:
+          productType:
+            type: string
+            example: "FineEarring"
+          claspType:
+            type: string
+            example: "other-clasp-type"
+          chainType:
+            type: string
+            example: "other-chain-type"
+          backFinding:
+            type: string
+            example: "clip-on"
+          ringSize:
+            type: string
+            example: "3"
+      material: 
+        type: object
+        properties:
+          materialType:
+            type: array
+            items:
+              type: string
+              enum: 
+              - "metal"
+              - "gemstone"
+              - "pearl"
+            example: ['metal']
+          material:
+            type: array
+            items:
+              type: string
+            example: ['titanium', 'black-diamond']
+          gemType:
+            type: string
+          stoneCut:
+            type: string
+          stoneClarity:
+            type: string
+          stoneShape:
+            type: string
+          pearlType:
+            type: string
+          pearlLuster:
+            type: string
+          pearlShape:
+            type: string
+          pearlUniformity:
+            type: string
+          surfaceMarking:
+            type: string
+          stringingMethod:
+            type: string
+          sizePerPearl:
+            type: string
+          settingType:
+            type: string
+          metalType: 
+            type: string
+          metalStamp:
+            type: string
+          inscription:
+            type: string
+  assets:
     type: array
     items:
-      $ref: './ProductAttribute.yaml'
-  option_groups:
-    type: array
-    items:
-      $ref: './ProductOptionGroup.yaml'
+      $ref: './Asset.yaml'
+  createdAt:
+    $ref: './UnixTimestamp.yaml'
+  updatedAt: 
+    $ref: './UnixTimestamp.yaml'
+  deletedAt:
+    $ref: './UnixTimestamp.yaml'
 description: A Schema representing a generic jewelry product

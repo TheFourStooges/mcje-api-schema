@@ -1,26 +1,17 @@
 # Asset:
+# https://swagger.io/docs/specification/describing-request-body/multipart-requests/
 content:
-  '*/*':
+  multipart/form-data:
     schema:
       type: object
       properties:
-        filename:
+        description:
           type: string
-        contents:
+          example: An image
+        productId:
+          $ref: '../schemas/RecordId.yaml'
+        image: 
           type: string
-          format: byte
-        url:
-          type: string
-        image_dimensions:
-          type: object
-          properties:
-            width:
-              type: integer
-              format: uint32
-            height:
-              type: integer
-              format: utin32
-        private:
-          type: boolean
+          format: binary
 description: Asset object, representing media assets (i.e. images, videos, etc.)
 required: true

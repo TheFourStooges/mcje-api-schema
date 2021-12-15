@@ -1,0 +1,14 @@
+# IdUnion
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    example: 07cf0c5d-2050-474d-b467-3335eb8aa4db
+  slug:
+    type: string
+anyOf:
+  - required: [id]
+  - required: [slug]
+
+# https://community.smartbear.com/t5/Swagger-Open-Source-Tools/Defining-conditional-attributes-in-OpenAPI/m-p/222693#M2058

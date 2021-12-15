@@ -1,4 +1,4 @@
-# jwt_bearer:
+# bearerAuth:
 type: http
 scheme: bearer
 bearerFormat: JWT

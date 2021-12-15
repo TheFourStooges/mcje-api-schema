@@ -1,10 +1,10 @@
 # Cart:
 content:
-  "*/*":
+  application/json:
     schema:
       type: object
       properties:
-        discount_code:
-          type: string
+        # discount_code:
+        #   type: string
 description: A temporary set of products, chosen and editable at will by the user
 required: false

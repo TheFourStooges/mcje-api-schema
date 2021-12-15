@@ -6,7 +6,7 @@ put:
   tags:
     - cart
   summary: Update line item in cart
-  operationId: updateCartItem
+  operationId: updateItemInCart
   parameters:
     - $ref: '../parameters/identifier.yaml'
     - name: item_id
@@ -16,12 +16,12 @@ put:
       schema:
         $ref: '../schemas/RecordId.yaml'
   requestBody:
-    $ref: '../requestBodies/LineItem.yaml'
+    $ref: '../requestBodies/CartItem.yaml'
   responses:
     '200':
       description: successful update
       content:
-        "*/*":
+        application/json:
           schema:
             $ref: '../schemas/Cart.yaml'
     '404':
@@ -31,13 +31,13 @@ put:
     '401':
       $ref: '../responses/UnauthorizedError.yaml'
   security:
-    - jwt_bearer: []
+    - bearerAuth: []
 # Remove line item from cart
 delete:
   tags:
     - cart
   summary: Remove line item from cart
-  operationId: removeCartItem
+  operationId: removeItemInCart
   parameters:
     - $ref: '../parameters/identifier.yaml'
     - name: item_id
@@ -50,7 +50,7 @@ delete:
     '200':
       description: successful update
       content:
-        "*/*":
+        application/json:
           schema:
             $ref: '../schemas/Cart.yaml'
     '404':
@@ -60,4 +60,4 @@ delete:
     '401':
       $ref: '../responses/UnauthorizedError.yaml'
   security:
-   - jwt_bearer: []
+   - bearerAuth: []

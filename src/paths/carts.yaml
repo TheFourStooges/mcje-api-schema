@@ -10,7 +10,9 @@ get:
     '201':
       description: Cart created
       content:
-        "*/*":
+        application/json:
           schema:
             $ref: '../schemas/Cart.yaml'
+  security:
+    - bearerAuth: []
   
