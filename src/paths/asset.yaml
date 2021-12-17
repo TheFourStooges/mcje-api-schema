@@ -58,7 +58,4 @@ delete:
                 type: boolean
                 default: true
   security:
-    - mcje_auth:
-      - "create:products"
-      - "update:products"
-      - "delete:products"
+    - bearerAuth: []
