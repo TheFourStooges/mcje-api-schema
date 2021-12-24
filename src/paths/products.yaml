@@ -34,9 +34,7 @@ get:
       description: filter by array of category ids. all values must apply to the product
       required: false
       schema:
-        type: array
-        items:
-          $ref: '../schemas/RecordId.yaml'
+        $ref: '../schemas/RecordId.yaml'
       style: form
       explode: false
   responses:
